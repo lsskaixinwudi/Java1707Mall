@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.situ.mall.dao.ProductDao">
+  		
+	  	<resultMap type="product" id="productInfoMap">
+			<id property="id" column="id"/>
+			<result property="category_id" column="category_id" />
+			<result property="name" column="name"/>
+			<result property="subtitle" column="subtitle"/>
+			<result property="main_image" column="main_image"/>
+			<result property="sub_images" column="sub_images"/>
+			<!-- <result property="detail" column="detail"/> -->
+			<result property="price" column="price"/>
+			<result property="stock" column="stock"/>
+			<result property="status" column="status"/>
+			<result property="create_time" column="create_time"/>
+			<result property="update_time" column="update_time"/>
+		</resultMap>
+		
+		<sql id="Base_Column_List" >
+	    	id, category_id, name, subtitle, main_image,detail, sub_images, price, stock, status, 
+	    	create_time, update_time
+  		</sql>
+		
+		
+		<select id="findAll" parameterType="int" resultMap="productInfoMap">
+			select <include refid="Base_Column_List"></include> from product
+		</select>
+		
+		
+		<select id="findPageBeanList" parameterType="int" resultMap="productInfoMap">
+			select p.id,c.id AS category_id,c.name AS category_name, p.name, p.subtitle, p.main_image,p.detail, p.sub_images, p.price, p.stock, p.status, 
+	    	p.create_time, p.update_time
+	    	from product AS p INNER join category AS c
+	    	ON p.category_id=c.id
+			limit #{index},#{pageSize}
+		</select>
+		
+		<select id="getTotalCount" resultType="int">
+			SELECT COUNT(*) FROM
+			product
+		</select>
+  		
+  		
+  		
+		<select id="searchByCondition" parameterType="Product" resultMap="productInfoMap">
+    		SELECT s.id,s.name,s.age,s.gender,s.address,b.id AS banji_id,b.name AS banji_name
+			FROM product AS s left JOIN banji AS b 
+			ON s.banji_id=b.id
+		       <where>
+		           <if test="name!=null and !&quot;&quot;.equals(name.trim())">
+		               and name like '%${name}%'
+		           </if>
+		           <if test="age!=null">
+		               and age=#{age}
+		           </if>
+		           <if test="gender!=null  and !&quot;&quot;.equals(gender.trim())">
+		               and gender=#{gender}
+		           </if>
+		       </where>
+		</select>
+		
+		
+		<select id="findAllBanji" resultType="Banji">
+  			select * from banji
+  		</select>
+		
+		<delete id="deletById" parameterType="int">
+			delete from product where id=#{id}
+		</delete>	  
+		
+		<insert id="add" parameterType="Product" >
+		  	insert into product (id,category_id,name,subtitle, 
+	    	main_image,sub_images,detail, price,stock,status,create_time,update_time) 
+	    	values (#{id},#{category_id},#{name},#{subtitle},#{main_image},#{sub_images},#{detail},#{price},#{stock},#{status},now(),now())
+		</insert>
+		
+		<select id="selectById" parameterType="int" resultType="product">
+  			select * from product where id=#{id}
+  		</select>
+  		
+  		<select id="findCategoryListById" parameterType="int" resultMap="productInfoMap">
+    		select <include refid="Base_Column_List"></include> from product where category_id=#{id}
+    	</select>
+		
+		<update id="update" parameterType="Product">
+  			update product
+  			<set>
+  			<if test="category_id!=null">
+				category_id=#{category_id},
+			</if>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="subtitle!=null">
+				subtitle=#{subtitle},
+			</if>
+			<if test="main_image!=null">
+				main_image=#{main_image},
+			</if>
+			<if test="price!=null">
+				price=#{price},
+			</if>
+			<if test="stock!=null">
+				stock=#{stock},
+			</if>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="create_time!=null">
+				create_time=#{create_time},
+			</if>
+			 <if test="update_time!=null">
+				update_time=#{update_time},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+  </mapper>

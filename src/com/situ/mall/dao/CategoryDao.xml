@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.situ.mall.dao.CategoryDao">
+  		
+	  	<resultMap type="Category" id="categoryInfoMap">
+			<id property="id" column="id"/>
+			<id property="parent_id" column="parent_id"/>
+			<result property="name" column="name"/>
+			<result property="status" column="status"/>
+			<result property="sort_order" column="sort_order"/>
+			<result property="create_time" column="create_time"/>
+			<result property="update_time" column="update_time"/>
+		</resultMap>
+	
+		<select id="findAll" parameterType="int" resultMap="categoryInfoMap">
+			SELECT * FROM category
+		</select>
+		
+		
+		<select id="findPageBeanList" parameterType="int" resultMap="categoryInfoMap">
+			SELECT * FROM category
+			limit #{index},#{pageSize}
+		</select>
+		
+		
+		<select id="getTotalCount" resultType="int">
+			SELECT COUNT(*) FROM
+			category
+		</select>
+  		
+  		<delete id="deletById" parameterType="int">
+			delete from category where id=#{id}
+		</delete>
+  		
+  		<insert id="add" parameterType="Category">
+			INSERT INTO category(parent_id,name,status,create_time,update_time) VALUES(#{parent_id},#{name},#{status},#{create_time},#{update_time})
+		</insert>
+		
+		<update id="update" parameterType="Category">
+			UPDATE category SET 
+			parent_id=#{parent_id},name=#{name},status=#{status},update_time=now()
+			WHERE id=#{id} 
+		</update>
+		
+		<select id="selectById" parameterType="int" resultType="Category">
+  			select * from category where id=#{id}
+  		</select>
+		
+		<select id="findParentCategory" resultMap="categoryInfoMap">
+  			select id,parent_id,name,status,sort_order,create_time,update_time from category where parent_id = 0;
+	  	</select>
+	  	
+	  	<select id="findCategory" parameterType="int" resultMap="categoryInfoMap">
+	  		select id,parent_id,name,status,sort_order,create_time,update_time from category where parent_id = #{parentId};
+	  	</select> 
+		
+		<select id="findCategory1" parameterType="int" resultMap="categoryInfoMap">
+	  			select id,parent_id,name,status,sort_order,create_time,update_time from category where id = #{id};
+	  	</select>
+	  	
+	  	<select id="findCategory2" parameterType="int" resultMap="categoryInfoMap">
+	  			select id,parent_id,name,status,sort_order,create_time,update_time from category where name = #{name};
+	  	</select> 
+		
+  </mapper>
