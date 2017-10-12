@@ -24,6 +24,7 @@
 				//+
 				$("#add").click(function(){
 					var num = $("#num").val();
+					location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+amount;
 					num++;
 					if(num > '${product.stock}') {
 						alert("此商品只能买" + '${product.stock}' + "件");
@@ -35,9 +36,17 @@
 				
 			});
 			function addCart(product_id){
-				var amount = $("#num").val();
-				window.location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+amount;
-		}
+				var add = $("#add").val();
+				if(num == 0){
+					return;
+				}
+				location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+1;
+			}
+			function subCart(product_id){
+				var sub = $("#sub").val();
+				
+				location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+-1;
+			}
 		</script>
 	</head>
 
@@ -119,7 +128,6 @@
 			<img src="${ctx}/resources/front/img/157.png" style="margin-left: 142px; " />
 		</div>
 		</div>
-		<%-- ${buyCartVO} --%>
 		<c:forEach items="${buyCartVO.items}" var="cartItemVO">
 			<div class="car_1">
 				<div class="car_1_top">
@@ -140,9 +148,9 @@
 					<div class="car_con_1">
 						<input type="checkbox" />
 					</div>
-					<%-- <div class="car_con_2">
-						<img src="${cartItemVO.product.fullUrl}" />
-					</div> --%>
+					<div class="car_con_2">
+						<img src="${cartItemVO.product.fullUrl}" width="70" height="80"/>
+					</div>
 					<div class="car_con_3">
 						<p class="p_title">${cartItemVO.product.name}</p>
 						<img src="${ctx}/resources/front/img/160.png" />
@@ -154,7 +162,7 @@
 						<li class="price">
 							<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
 								<del>
-									¥ 1699.00<br />
+									¥ ${cartItemVO.product.price*1.5}<br />
 								</del>
 							</span>
 							<span style="color: #666666;">
@@ -162,9 +170,9 @@
 							</span>
 						</li>
 						<li class="num_select">
-							<input class="car_ul_sub" type="button" id="sub" value="-"/>
+							<input class="car_ul_sub" onclick="subCart(${cartItemVO.product.id})" type="button" id="sub" value="-"/>
 							<input class="car_ul_text" type="text" id="num" placeholder="1" value="${cartItemVO.amount}" />
-							<input class="car_ul_add" type="button" id="add" value="+" />
+							<input class="car_ul_add" onclick="addCart(${cartItemVO.product.id})" type="button" id="add" value="+" />
 						</li>
 						<li class="money">
 							<span style="color: #F41443;">
@@ -189,7 +197,7 @@
 						<input type="checkbox" />
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
-					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCartVO.totalPrice}</span></li>
+					<li style="margin-left: 215px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCartVO.totalPrice}</span></li>
 					<li class="total_right"><a href="">立即结算</a></li>
 				</ul>
 			</div>

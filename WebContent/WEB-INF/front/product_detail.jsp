@@ -15,7 +15,7 @@
 					var num = $("#num").val();
 					num--;
 					if(num == 0) {
-						//alert();
+						delCartItem(product_id);
 						return;
 					}
 					//赋值
