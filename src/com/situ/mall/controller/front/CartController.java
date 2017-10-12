@@ -69,7 +69,7 @@ public class CartController {
 			cartItemVO.setAmount(amount);
 			
 			buyCartVO.addItem(cartItemVO);
-			buyCartVO.setProductId(product_id);
+			buyCartVO.setProduct_id(product_id);
 			
 			//把购物车对象BuyCartVO以json形式写到cookie里面
 			StringWriter stringWriter = new StringWriter();
@@ -145,7 +145,7 @@ public class CartController {
 			cartItemVO.setAmount(amount);
 			
 			buyCartVO.delItems(product_id);
-			buyCartVO.setProductId(product_id);
+			buyCartVO.setProduct_id(product_id);
 			
 			//把购物车对象BuyCartVO以json形式写到cookie里面
 			StringWriter stringWriter = new StringWriter();

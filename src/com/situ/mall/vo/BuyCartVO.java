@@ -76,7 +76,7 @@ public class BuyCartVO {
 		return product_id;
 	}
 
-	public void setProductId(Integer product_id) {
+	public void setProduct_id(Integer product_id) {
 		this.product_id = product_id;
 	}
 
@@ -84,6 +84,8 @@ public class BuyCartVO {
 	public String toString() {
 		return "BuyCartVO [items=" + items + ", product_id=" + product_id + "]";
 	}
+
+	
 
 	
 
