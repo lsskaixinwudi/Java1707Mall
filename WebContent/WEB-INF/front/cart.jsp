@@ -47,6 +47,13 @@
 				
 				location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+-1;
 			}
+			function delCart(product_id){
+				var del = $("#del").val();
+				if(num == 0){
+					return;
+				}
+				location.href="${ctx}/cart/delCart.shtml?product_id="+product_id;
+			}
 		</script>
 	</head>
 
@@ -180,7 +187,7 @@
 							</span>
 						</li>
 						<li class="delete">
-							<img src="${ctx}/resources/front/img/166.png" />
+							<img onclick="delCart(${cartItemVO.product.id})" src="${ctx}/resources/front/img/166.png" />
 						</li>
 					</ul>
 				</div>
