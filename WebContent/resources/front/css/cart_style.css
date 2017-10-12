@@ -220,7 +220,8 @@ a {
 }
 .car_con_2{
 	float: left;
-	
+	width: 100px;
+	height:100px;
 }
 .car_con_2 img{
 	margin-left: 15px;
@@ -259,7 +260,7 @@ a {
 	float: left;
 	margin-right: 36px;
 }
-.car_ul_btn1{
+.car_ul_sub{
 	width: 20px;
 	height: 27px;
 	float: left;
@@ -270,7 +271,7 @@ a {
 	border: 1px solid #CCCCCC;
 	float: left;
 }
-.car_ul_btn2{
+.car_ul_add{
 	width: 20px;
 	height: 27px;
 	float: left;

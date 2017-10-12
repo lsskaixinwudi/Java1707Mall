@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf
+
+8"
     pageEncoding="utf-8"%>
 <%@include file="../common/head.jsp" %>
 <!DOCTYPE html>
@@ -32,7 +34,13 @@
 					//赋值
 					$("#num").val(num);
 				});
+				
 			});
+			
+			function addCart(product_id){
+				var amount = $("#num").val();
+				window.location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+amount;
+			}
 		</script>
 	</head>
 
@@ -321,7 +329,7 @@
 							</li>
 						</ul>
 						库存： ${product.stock}
-						<input class="right_bottom_addCar" type="button" value="加入购物车" />
+						<input class="right_bottom_addCar" type="button" onclick="addCart(${product.id})" value="加入购物车" />
 						<span class="right_txt_bottom">
 							温馨提示&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·支持7天无理由退货
 						</span>

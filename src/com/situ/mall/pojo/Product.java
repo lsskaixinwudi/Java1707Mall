@@ -3,6 +3,7 @@ package com.situ.mall.pojo;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.situ.mall.constant.MallConstant;
 import com.situ.mall.util.QiniuUploadUtil;
 
@@ -32,6 +33,7 @@ public class Product {
 
     private Date update_time;
     
+    @JsonIgnore
     public String getFullUrl() {
 		return MallConstant.SERVER_ADDRES + main_image;
 	}

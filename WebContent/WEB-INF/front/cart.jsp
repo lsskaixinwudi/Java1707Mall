@@ -7,7 +7,38 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>靓淘网_购物车</title>
-		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/cart_style.css" />
+		<link rel="stylesheet" href="${ctx}/resources/front/css/cart_style.css" />
+		<script type="text/javascript">
+		$(function(){
+				//- 
+				$("#sub").click(function(){
+					var num = $("#num").val();
+					num--;
+					if(num == 0) {
+						//alert();
+						return;
+					}
+					//赋值
+					$("#num").val(num);
+				});
+				//+
+				$("#add").click(function(){
+					var num = $("#num").val();
+					num++;
+					if(num > '${product.stock}') {
+						alert("此商品只能买" + '${product.stock}' + "件");
+						return;
+					}
+					//赋值
+					$("#num").val(num);
+				});
+				
+			});
+			function addCart(product_id){
+				var amount = $("#num").val();
+				window.location.href="${ctx}/cart/addCart.shtml?product_id="+product_id+"&amount="+amount;
+		}
+		</script>
 	</head>
 
 	<body>
@@ -88,300 +119,67 @@
 			<img src="${ctx}/resources/front/img/157.png" style="margin-left: 142px; " />
 		</div>
 		</div>
-		<div class="car_1">
-			<div class="car_1_top">
-				<img src="${ctx}/resources/front/img/158.png" />
-				<p class="car_1_top_p">
-					<span class="span1">
-						活动商品购满¥105.00 , 即可加价换购商品1件&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</span>
-					<span class="span2">
-						&nbsp;查看换购品
-					</span>
-					<span class="span3">
-						&nbsp;&nbsp;去凑单&gt;
-					</span>
-				</p>
+		<%-- ${buyCartVO} --%>
+		<c:forEach items="${buyCartVO.items}" var="cartItemVO">
+			<div class="car_1">
+				<div class="car_1_top">
+					<img src="${ctx}/resources/front/img/158.png" />
+					<p class="car_1_top_p">
+						<span class="span1">
+							活动商品购满¥105.00 , 即可加价换购商品1件&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</span>
+						<span class="span2">
+							&nbsp;查看换购品
+						</span>
+						<span class="span3">
+							&nbsp;&nbsp;去凑单&gt;
+						</span>
+					</p>
+				</div>
+				<div class="car_2_bottom">
+					<div class="car_con_1">
+						<input type="checkbox" />
+					</div>
+					<%-- <div class="car_con_2">
+						<img src="${cartItemVO.product.fullUrl}" />
+					</div> --%>
+					<div class="car_con_3">
+						<p class="p_title">${cartItemVO.product.name}</p>
+						<img src="${ctx}/resources/front/img/160.png" />
+						<p class="p_seven">&nbsp;支持7天无理由退货</p>
+						<img src="${ctx}/resources/front/img/161.png" />
+						<p class="p_select">&nbsp;选包装</p>
+					</div>
+					<ul class="car_ul">
+						<li class="price">
+							<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
+								<del>
+									¥ 1699.00<br />
+								</del>
+							</span>
+							<span style="color: #666666;">
+								¥ ${cartItemVO.product.price}
+							</span>
+						</li>
+						<li class="num_select">
+							<input class="car_ul_sub" type="button" id="sub" value="-"/>
+							<input class="car_ul_text" type="text" id="num" placeholder="1" value="${cartItemVO.amount}" />
+							<input class="car_ul_add" type="button" id="add" value="+" />
+						</li>
+						<li class="money">
+							<span style="color: #F41443;">
+								¥ ${cartItemVO.product.price*cartItemVO.amount}
+							</span>
+						</li>
+						<li class="delete">
+							<img src="${ctx}/resources/front/img/166.png" />
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-			<div class="car_2_bottom">
-				<div class="car_con_1">
-					<input type="checkbox" />
-				</div>
-				<div class="car_con_2">
-					<img src="${ctx}/resources/front/img/159.png" />
-				</div>
-				<div class="car_con_3">
-					<p class="p_title">华为&nbsp;畅想6S&nbsp;银色&nbsp;移动联通电信4G手机&nbsp;双卡双待</p>
-					<img src="${ctx}/resources/front/img/160.png" />
-					<p class="p_seven">&nbsp;支持7天无理由退货</p>
-					<img src="${ctx}/resources/front/img/161.png" />
-					<p class="p_select">&nbsp;选包装</p>
-				</div>
-				<ul class="car_ul">
-					<li class="price">
-						<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
-							<del>
-								¥ 1699.00<br />
-							</del>
-						</span>
-						<span style="color: #666666;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="num_select">
-						<input class="car_ul_btn1" type="button" value="-" />
-						<input class="car_ul_text" type="text" placeholder="1" />
-						<input class="car_ul_btn2" type="button" value="+" />
-					</li>
-					<li class="money">
-						<span style="color: #F41443;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="delete">
-						<img src="${ctx}/resources/front/img/166.png" />
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="car_1">
-			<div class="car_1_top">
-				<img src="${ctx}/resources/front/img/158.png" />
-				<p class="car_1_top_p">
-					<span class="span1">
-						活动商品购满¥105.00 , 即可加价换购商品1件&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</span>
-					<span class="span2">
-						&nbsp;查看换购品
-					</span>
-					<span class="span3">
-						&nbsp;&nbsp;去凑单&gt;
-					</span>
-				</p>
-			</div>
-			<div class="car_2_bottom">
-				<div class="car_con_1">
-					<input type="checkbox" />
-				</div>
-				<div class="car_con_2">
-					<img src="${ctx}/resources/front/img/159.png" />
-				</div>
-				<div class="car_con_3">
-					<p class="p_title">华为&nbsp;畅想6S&nbsp;银色&nbsp;移动联通电信4G手机&nbsp;双卡双待</p>
-					<img src="${ctx}/resources/front/img/160.png" />
-					<p class="p_seven">&nbsp;支持7天无理由退货</p>
-					<img src="${ctx}/resources/front/img/161.png" />
-					<p class="p_select">&nbsp;选包装</p>
-				</div>
-				<ul class="car_ul">
-					<li class="price">
-						<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
-							<del>
-								¥ 1699.00<br />
-							</del>
-						</span>
-						<span style="color: #666666;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="num_select">
-						<input class="car_ul_btn1" type="button" value="-" />
-						<input class="car_ul_text" type="text" placeholder="1" />
-						<input class="car_ul_btn2" type="button" value="+" />
-					</li>
-					<li class="money">
-						<span style="color: #F41443;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="delete">
-						<img src="${ctx}/resources/front/img/166.png" />
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="car_1">
-			<div class="car_1_top">
-				<img src="${ctx}/resources/front/img/158.png" />
-				<p class="car_1_top_p">
-					<span class="span1">
-						活动商品购满¥105.00 , 即可加价换购商品1件&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</span>
-					<span class="span2">
-						&nbsp;查看换购品
-					</span>
-					<span class="span3">
-						&nbsp;&nbsp;去凑单&gt;
-					</span>
-				</p>
-			</div>
-			<div class="car_2_bottom">
-				<div class="car_con_1">
-					<input type="checkbox" />
-				</div>
-				<div class="car_con_2">
-					<img src="${ctx}/resources/front/img/159.png" />
-				</div>
-				<div class="car_con_3">
-					<p class="p_title">华为&nbsp;畅想6S&nbsp;银色&nbsp;移动联通电信4G手机&nbsp;双卡双待</p>
-					<img src="${ctx}/resources/front/img/160.png" />
-					<p class="p_seven">&nbsp;支持7天无理由退货</p>
-					<img src="${ctx}/resources/front/img/161.png" />
-					<p class="p_select">&nbsp;选包装</p>
-				</div>
-				<ul class="car_ul">
-					<li class="price">
-						<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
-							<del>
-								¥ 1699.00<br />
-							</del>
-						</span>
-						<span style="color: #666666;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="num_select">
-						<input class="car_ul_btn1" type="button" value="-" />
-						<input class="car_ul_text" type="text" placeholder="1" />
-						<input class="car_ul_btn2" type="button" value="+" />
-					</li>
-					<li class="money">
-						<span style="color: #F41443;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="delete">
-						<img src="${ctx}/resources/front/img/166.png" />
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="car_1">
-			<div class="car_1_top">
-				<img src="${ctx}/resources/front/img/158.png" />
-				<p class="car_1_top_p">
-					<span class="span1">
-						活动商品购满¥105.00 , 即可加价换购商品1件&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</span>
-					<span class="span2">
-						&nbsp;查看换购品
-					</span>
-					<span class="span3">
-						&nbsp;&nbsp;去凑单&gt;
-					</span>
-				</p>
-			</div>
-			<div class="car_2_bottom">
-				<div class="car_con_1">
-					<input type="checkbox" />
-				</div>
-				<div class="car_con_2">
-					<img src="${ctx}/resources/front/img/159.png" />
-				</div>
-				<div class="car_con_3">
-					<p class="p_title">华为&nbsp;畅想6S&nbsp;银色&nbsp;移动联通电信4G手机&nbsp;双卡双待</p>
-					<img src="${ctx}/resources/front/img/160.png" />
-					<p class="p_seven">&nbsp;支持7天无理由退货</p>
-					<img src="${ctx}/resources/front/img/161.png" />
-					<p class="p_select">&nbsp;选包装</p>
-				</div>
-				<ul class="car_ul">
-					<li class="price">
-						<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
-							<del>
-								¥ 1699.00<br />
-							</del>
-						</span>
-						<span style="color: #666666;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="num_select">
-						<input class="car_ul_btn1" type="button" value="-" />
-						<input class="car_ul_text" type="text" placeholder="1" />
-						<input class="car_ul_btn2" type="button" value="+" />
-					</li>
-					<li class="money">
-						<span style="color: #F41443;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="delete">
-						<img src="${ctx}/resources/front/img/166.png" />
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+		</c:forEach>
 		
-		<div class="car_2">
-				<ul>
-					<li class="car_2_1"><input type="checkbox" style="color: #666666;margin: 23px 11px 10px 22px;" /></li>
-					<li class="car_2_2">西边数码专营店</li>
-					<li class="car_2_3"><img src="${ctx}/resources/front/img/157.png" style="margin-left: 142px; " /></li>
-				</ul>
-			</div>
-		</div>
-		<div class="car_1">
-			<div class="car_1_top">
-				<img src="${ctx}/resources/front/img/158.png" />
-				<p class="car_1_top_p">
-					<span class="span1">
-						活动商品购满¥105.00 , 即可加价换购商品1件&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</span>
-					<span class="span2">
-						&nbsp;查看换购品
-					</span>
-					<span class="span3">
-						&nbsp;&nbsp;去凑单&gt;
-					</span>
-				</p>
-			</div>
-			<div class="car_2_bottom">
-				<div class="car_con_1">
-					<input type="checkbox" />
-				</div>
-				<div class="car_con_2">
-					<img src="${ctx}/resources/front/img/159.png" />
-				</div>
-				<div class="car_con_3">
-					<p class="p_title">华为&nbsp;畅想6S&nbsp;银色&nbsp;移动联通电信4G手机&nbsp;双卡双待</p>
-					<img src="${ctx}/resources/front/img/160.png" />
-					<p class="p_seven">&nbsp;支持7天无理由退货</p>
-					<img src="${ctx}/resources/front/img/161.png" />
-					<p class="p_select">&nbsp;选包装</p>
-				</div>
-				<ul class="car_ul">
-					<li class="price">
-						<span style="color: #CCCCCC; margin-bottom: 15px;line-height: 20px;">
-							<del>
-								¥ 1699.00<br />
-							</del>
-						</span>
-						<span style="color: #666666;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="num_select">
-						<input class="car_ul_btn1" type="button" value="-" />
-						<input class="car_ul_text" type="text" placeholder="1" />
-						<input class="car_ul_btn2" type="button" value="+" />
-					</li>
-					<li class="money">
-						<span style="color: #F41443;">
-							¥ 1499.00
-						</span>
-					</li>
-					<li class="delete">
-						<img src="${ctx}/resources/front/img/166.png" />
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
 		<div class="blank">
 			
 		</div>
@@ -391,7 +189,7 @@
 						<input type="checkbox" />
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
-					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥7175</span></li>
+					<li style="margin-left: 265px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCartVO.totalPrice}</span></li>
 					<li class="total_right"><a href="">立即结算</a></li>
 				</ul>
 			</div>
