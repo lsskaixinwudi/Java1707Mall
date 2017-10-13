@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Student;
+import com.situ.mall.pojo.User;
 import com.situ.mall.vo.SearchCondition;
 
 public interface CategoryDao {
@@ -39,5 +40,7 @@ public interface CategoryDao {
 	List<Category> findCategory1();
 
 	List<Category> findCategory2();
+
+	User getUser(User user);
 
 }

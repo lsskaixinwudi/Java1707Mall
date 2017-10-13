@@ -10,6 +10,7 @@ import com.situ.mall.dao.CategoryDao;
 import com.situ.mall.dao.StudentDao;
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Student;
+import com.situ.mall.pojo.User;
 import com.situ.mall.service.ICategoryService;
 import com.situ.mall.service.IStudentService;
 import com.situ.mall.vo.PageBean;
@@ -105,6 +106,11 @@ public class CategoryServiceImpl implements ICategoryService{
 	@Override
 	public List<Category> findCategory2() {
 		return categoryDao.findCategory2();
+	}
+
+	@Override
+	public User getUser(User user) {
+		return categoryDao.getUser(user);
 	}
 
 	

@@ -3,6 +3,7 @@ package com.situ.mall.service;
 import java.util.List;
 
 import com.situ.mall.pojo.Category;
+import com.situ.mall.pojo.User;
 import com.situ.mall.vo.PageBean;
 import com.situ.mall.vo.SearchCondition;
 
@@ -45,5 +46,8 @@ public interface ICategoryService {
 
 
 	List<Category> findCategory2();
+
+
+	User getUser(User user);
 
 }

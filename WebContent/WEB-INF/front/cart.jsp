@@ -205,7 +205,7 @@
 					</li>
 					<li style="margin-left: 8px;margin-right: 265px;">全选</li>
 					<li style="margin-left: 215px;margin-right: 18px;">总金额（已免运费）：<span style="color: #F41443;">¥${buyCartVO.totalPrice}</span></li>
-					<li class="total_right"><a href="">立即结算</a></li>
+					<li class="total_right"><a href="${pageContext.request.contextPath}/order/loginSession.shtml">立即结算</a></li>
 				</ul>
 			</div>
 					<div class="sp">

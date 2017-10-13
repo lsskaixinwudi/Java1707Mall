@@ -35,10 +35,10 @@ public class LoginController {
 		User resultUser = loginService.getUser(user);
 		if (user != null && resultUser != null) {
 			if (user.getusername().equals(resultUser.getusername() ) && user.getPassword().equals(resultUser.getPassword())) {
-				/*HttpSession session = req.getSession();
-				session.setAttribute("user", user);*/
+				HttpSession session = req.getSession();
+				session.setAttribute("user", user);
 				System.out.println(user);
-				path =  "index";
+				path =  "indexlogin";
 			} else {
 				path = "register";
 			}
