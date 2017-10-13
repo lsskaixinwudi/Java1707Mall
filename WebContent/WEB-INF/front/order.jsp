@@ -13,10 +13,10 @@
 	<meta name="renderer" content="webkit">
 	<title>确认订单-云购物商城</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="css/base.css">
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<link rel="stylesheet" type="text/css" href="css/car/base.css">
-	<link rel="stylesheet" type="text/css" href="css/car/home.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base1.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home1.css">
 
 </head>
 <body>
