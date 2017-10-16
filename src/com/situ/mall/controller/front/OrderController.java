@@ -1,5 +1,6 @@
 package com.situ.mall.controller.front;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -35,7 +36,7 @@ public class OrderController {
 		if (user != null) {
 			
 				System.out.println(user);
-				path =  "order";
+				path="redirect:/order/prepareOrder.shtml";
 			} else {
 				path = "login";
 			}

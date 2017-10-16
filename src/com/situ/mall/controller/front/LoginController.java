@@ -36,7 +36,7 @@ public class LoginController {
 		if (user != null && resultUser != null) {
 			if (user.getusername().equals(resultUser.getusername() ) && user.getPassword().equals(resultUser.getPassword())) {
 				HttpSession session = req.getSession();
-				session.setAttribute("user", user);
+				session.setAttribute("user", resultUser);
 				System.out.println(user);
 				path =  "indexlogin";
 			} else {

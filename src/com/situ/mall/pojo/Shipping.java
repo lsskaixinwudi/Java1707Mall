@@ -8,48 +8,48 @@ public class Shipping implements Serializable{
 
 	private Integer id;
 
-    private Integer userId;
+    private Integer user_id;
 
-    private String receiverName;
+    private String receiver_name;
 
-    private String receiverPhone;
+    private String receiver_phone;
 
-    private String receiverMobile;
+    private String receiver_mobile;
 
-    private String receiverProvince;
+    private String receiver_province;
 
-    private String receiverCity;
+    private String receiver_city;
 
-    private String receiverDistrict;
+    private String receiver_district;
 
-    private String receiverAddress;
+    private String receiver_address;
 
-    private String receiverZip;
+    private String receiver_zip;
 
-    private Date createTime;
+    private Date create_time;
 
-    private Date updateTime;
+    private Date update_time;
 
 	public Shipping() {
 		super();
 	}
 
-	public Shipping(Integer id, Integer userId, String receiverName, String receiverPhone, String receiverMobile,
-			String receiverProvince, String receiverCity, String receiverDistrict, String receiverAddress,
-			String receiverZip, Date createTime, Date updateTime) {
+	public Shipping(Integer id, Integer user_id, String receiver_name, String receiver_phone, String receiver_mobile,
+			String receiver_province, String receiver_city, String receiver_district, String receiver_address,
+			String receiver_zip, Date create_time, Date update_time) {
 		super();
 		this.id = id;
-		this.userId = userId;
-		this.receiverName = receiverName;
-		this.receiverPhone = receiverPhone;
-		this.receiverMobile = receiverMobile;
-		this.receiverProvince = receiverProvince;
-		this.receiverCity = receiverCity;
-		this.receiverDistrict = receiverDistrict;
-		this.receiverAddress = receiverAddress;
-		this.receiverZip = receiverZip;
-		this.createTime = createTime;
-		this.updateTime = updateTime;
+		this.user_id = user_id;
+		this.receiver_name = receiver_name;
+		this.receiver_phone = receiver_phone;
+		this.receiver_mobile = receiver_mobile;
+		this.receiver_province = receiver_province;
+		this.receiver_city = receiver_city;
+		this.receiver_district = receiver_district;
+		this.receiver_address = receiver_address;
+		this.receiver_zip = receiver_zip;
+		this.create_time = create_time;
+		this.update_time = update_time;
 	}
 
 	public Integer getId() {
@@ -60,101 +60,101 @@ public class Shipping implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Integer getuser_id() {
+		return user_id;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setuser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getReceiverName() {
-		return receiverName;
+	public String getreceiver_name() {
+		return receiver_name;
 	}
 
-	public void setReceiverName(String receiverName) {
-		this.receiverName = receiverName;
+	public void setreceiver_name(String receiver_name) {
+		this.receiver_name = receiver_name;
 	}
 
-	public String getReceiverPhone() {
-		return receiverPhone;
+	public String getreceiver_phone() {
+		return receiver_phone;
 	}
 
-	public void setReceiverPhone(String receiverPhone) {
-		this.receiverPhone = receiverPhone;
+	public void setreceiver_phone(String receiver_phone) {
+		this.receiver_phone = receiver_phone;
 	}
 
-	public String getReceiverMobile() {
-		return receiverMobile;
+	public String getreceiver_mobile() {
+		return receiver_mobile;
 	}
 
-	public void setReceiverMobile(String receiverMobile) {
-		this.receiverMobile = receiverMobile;
+	public void setreceiver_mobile(String receiver_mobile) {
+		this.receiver_mobile = receiver_mobile;
 	}
 
-	public String getReceiverProvince() {
-		return receiverProvince;
+	public String getreceiver_province() {
+		return receiver_province;
 	}
 
-	public void setReceiverProvince(String receiverProvince) {
-		this.receiverProvince = receiverProvince;
+	public void setreceiver_province(String receiver_province) {
+		this.receiver_province = receiver_province;
 	}
 
-	public String getReceiverCity() {
-		return receiverCity;
+	public String getreceiver_city() {
+		return receiver_city;
 	}
 
-	public void setReceiverCity(String receiverCity) {
-		this.receiverCity = receiverCity;
+	public void setreceiver_city(String receiver_city) {
+		this.receiver_city = receiver_city;
 	}
 
-	public String getReceiverDistrict() {
-		return receiverDistrict;
+	public String getreceiver_district() {
+		return receiver_district;
 	}
 
-	public void setReceiverDistrict(String receiverDistrict) {
-		this.receiverDistrict = receiverDistrict;
+	public void setreceiver_district(String receiver_district) {
+		this.receiver_district = receiver_district;
 	}
 
-	public String getReceiverAddress() {
-		return receiverAddress;
+	public String getreceiver_address() {
+		return receiver_address;
 	}
 
-	public void setReceiverAddress(String receiverAddress) {
-		this.receiverAddress = receiverAddress;
+	public void setreceiver_address(String receiver_address) {
+		this.receiver_address = receiver_address;
 	}
 
-	public String getReceiverZip() {
-		return receiverZip;
+	public String getreceiver_zip() {
+		return receiver_zip;
 	}
 
-	public void setReceiverZip(String receiverZip) {
-		this.receiverZip = receiverZip;
+	public void setreceiver_zip(String receiver_zip) {
+		this.receiver_zip = receiver_zip;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public Date getcreate_time() {
+		return create_time;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setcreate_time(Date create_time) {
+		this.create_time = create_time;
 	}
 
-	public Date getUpdateTime() {
-		return updateTime;
+	public Date getupdate_time() {
+		return update_time;
 	}
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setupdate_time(Date update_time) {
+		this.update_time = update_time;
 	}
 
 	@Override
 	public String toString() {
-		return "Shipping [id=" + id + ", userId=" + userId + ", receiverName=" + receiverName + ", receiverPhone="
-				+ receiverPhone + ", receiverMobile=" + receiverMobile + ", receiverProvince=" + receiverProvince
-				+ ", receiverCity=" + receiverCity + ", receiverDistrict=" + receiverDistrict + ", receiverAddress="
-				+ receiverAddress + ", receiverZip=" + receiverZip + ", createTime=" + createTime + ", updateTime="
-				+ updateTime + "]";
+		return "Shipping [id=" + id + ", user_id=" + user_id + ", receiver_name=" + receiver_name + ", receiver_phone="
+				+ receiver_phone + ", receiver_mobile=" + receiver_mobile + ", receiver_province=" + receiver_province
+				+ ", receiver_city=" + receiver_city + ", receiver_district=" + receiver_district + ", receiver_address="
+				+ receiver_address + ", receiver_zip=" + receiver_zip + ", create_time=" + create_time + ", update_time="
+				+ update_time + "]";
 	}
     
     
