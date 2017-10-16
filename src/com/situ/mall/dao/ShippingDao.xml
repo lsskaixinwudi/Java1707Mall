@@ -31,4 +31,9 @@
 			SELECT <include refid="Base_Column_List"></include> FROM shipping where user_id = #{id}
 			
 		</select>
+		
+		<select id="selectById" parameterType="int" resultMap="ShippingInfoMap">
+			SELECT <include refid="Base_Column_List"></include> FROM shipping where user_id = #{id}
+			
+		</select>
     </mapper>

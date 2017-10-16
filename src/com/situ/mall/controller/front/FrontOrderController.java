@@ -88,10 +88,10 @@ public class FrontOrderController {
 	public String orderItems(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession(false);
 		User user = (User) session.getAttribute("user");
-		Integer user_id = user.getId();
+		Integer userId = user.getId();
 
 		// 将订单返回给前台展示
-		List<Order> orderItems = orderService.findOrder(user_id);
+		List<Order> orderItems = orderService.findOrder(userId);
 		model.addAttribute("orderItems", orderItems);
 		for (Order order : orderItems) {
 			System.out.println(order);

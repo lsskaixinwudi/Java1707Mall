@@ -1,5 +1,7 @@
 package com.situ.mall.vo;
 
+import java.util.List;
+
 import com.situ.mall.pojo.Product;
 
 /**
@@ -32,6 +34,16 @@ public class CartItemVO {
 	@Override
 	public String toString() {
 		return "CartItem [product=" + product + ", amount=" + amount + "]";
+	}
+
+	public List<CartItemVO> getItemsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setItemsList(List<CartItemVO> cartItemsList) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

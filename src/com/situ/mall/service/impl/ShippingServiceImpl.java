@@ -1,5 +1,7 @@
 package com.situ.mall.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +19,11 @@ public class ShippingServiceImpl implements IShippingService{
 	@Override
 	public Shipping findByUserId(int id) {
 		return shippingDao.findByUserId(id);
+	}
+
+	@Override
+	public List<Shipping> selectById(int id) {
+		return shippingDao.selectById(id);
 	}
 
 }
