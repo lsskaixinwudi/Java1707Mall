@@ -3,13 +3,14 @@ package com.situ.mall.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Order implements Serializable{
 
 	private Integer id;
 
-	private Long orderNo;
+	private String orderNo;
 
 	private Integer userId;
 
@@ -34,12 +35,14 @@ public class Order implements Serializable{
 	private Date createTime;
 
 	private Date updateTime;
+	
+	private	List<OrderItem> list;
 
 	public Order() {
 		super();
 	}
 
-	public Order(Integer id, Long orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
+	public Order(Integer id, String orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
 			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
 			Date createTime, Date updateTime) {
 		super();
@@ -67,11 +70,11 @@ public class Order implements Serializable{
 		this.id = id;
 	}
 
-	public Long getOrderNo() {
+	public String getOrderNo() {
 		return orderNo;
 	}
 
-	public void setOrderNo(Long orderNo) {
+	public void setOrderNo(String orderNo) {
 		this.orderNo = orderNo;
 	}
 
@@ -177,6 +180,10 @@ public class Order implements Serializable{
 				+ ", payment=" + payment + ", paymentType=" + paymentType + ", postage=" + postage + ", status="
 				+ status + ", paymentTime=" + paymentTime + ", sendTime=" + sendTime + ", endTime=" + endTime
 				+ ", closeTime=" + closeTime + ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+	}
+
+	public List<OrderItem> getList() {
+		return list;
 	}
 	
 	

@@ -13,10 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.situ.mall.pojo.Order;
+import com.situ.mall.pojo.OrderItem;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.pojo.Shipping;
 import com.situ.mall.pojo.User;
 import com.situ.mall.service.ILoginService;
+import com.situ.mall.service.IOrderService;
 import com.situ.mall.service.IProductService;
 import com.situ.mall.service.IShippingService;
 import com.situ.mall.vo.BuyCartVO;
@@ -38,16 +41,13 @@ public class FrontOrderController {
 	@Resource(name="productService")
 	private IProductService productService;
 	
+	@Resource(name="orderService")
+	private IOrderService orderService;
+	
 	@RequestMapping("/prepareOrder.shtml")
     public String prepareOrder(Model model,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
-		
-		/*User userNew = loginService.getUser(user);
-		model.addAttribute("userNew",userNew);
-		
-		System.out.println(userNew);*/
-		
 		Shipping shipping = shippingService.findByUserId(user.getId());
 		System.out.println(shipping);
 		model.addAttribute("shipping",shipping);
@@ -84,4 +84,23 @@ public class FrontOrderController {
 		System.out.println(buyCartVO);
 		return "order";
 	}
+	@RequestMapping(value = "/toOrederItems")
+	public String orderItems(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession(false);
+		User user = (User) session.getAttribute("user");
+		Integer user_id = user.getId();
+
+		// 将订单返回给前台展示
+		List<Order> orderItems = orderService.findOrder(user_id);
+		model.addAttribute("orderItems", orderItems);
+		for (Order order : orderItems) {
+			System.out.println(order);
+			List<OrderItem> list = order.getList();
+			for (OrderItem orderItem : list) {
+				System.out.println(orderItem);
+			}
+		}
+		return "orderItem";
+	}
 }
+

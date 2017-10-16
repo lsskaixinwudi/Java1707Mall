@@ -365,7 +365,7 @@
 						<div class="checkout-confirm">
 
 							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<a href="my-apy.html" class="btn btn-primary">立即下单</a>
+							<a href="${pageContext.request.contextPath}/order/orderItem.shtml" class="btn btn-primary">立即下单</a>
 
 						</div>
 					</div>
