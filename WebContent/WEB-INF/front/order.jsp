@@ -13,10 +13,10 @@
 	<meta name="renderer" content="webkit">
 	<title>确认订单-云购物商城</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base.css">
-	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home.css">
-	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base1.css">
-	<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home1.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/base.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/home.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/base1.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/home1.css">
 
 </head>
 <body>
@@ -134,7 +134,7 @@
 		</script>
 		<div class="container">
 			<div class="checkout-box">
-				<form  id="checkoutForm" action="#" method="post">
+				<form  id="checkoutForm" action="${pageContext.request.contextPath}/order/addOrder.shtml" method="post">
 					<div class="checkout-box-bd">
 						<!-- 地址状态 0：默认选择；1：新增地址；2：修改地址 -->
 						<input type="hidden" name="Checkout[addressState]" id="addrState"   value="0">
@@ -289,7 +289,7 @@
 													</div>
 												</div>
 
-												<div class="col col-2">${cartItemVO.product.price}</div>
+												<div class="col col-2"><input type="hidden" name="currentUnitPrice" value="${cartItemVO.product.price}"/>${cartItemVO.product.price}</div>
 												<div class="col col-3">${cartItemVO.amount}</div>
 												<div class="col col-4">${cartItemVO.product.price*cartItemVO.amount}</div>
 											</div>
@@ -365,8 +365,8 @@
 						<div class="checkout-confirm">
 
 							<a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-							<a href="${pageContext.request.contextPath}/order/toOrederItems.shtml" class="btn btn-primary">立即下单</a>
-
+							<input type="submit"  class="btn btn-primary" value="立即下单">
+							
 						</div>
 					</div>
 			</div>

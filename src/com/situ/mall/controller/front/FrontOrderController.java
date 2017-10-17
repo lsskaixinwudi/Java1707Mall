@@ -1,11 +1,15 @@
 package com.situ.mall.controller.front;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -100,6 +104,96 @@ public class FrontOrderController {
 		System.out.println(buyCartVO);
 		return "order";
 	}
+	@RequestMapping(value="addOrder.shtml")
+	public String addOrder(Model model, Integer shippingId, Integer paymentType, HttpServletRequest req, HttpServletResponse resp, BigDecimal currentUnitPrice) {
+		Order order = new Order();
+		
+		order.setShippingId(shippingId);
+		
+		order.setPaymentType(paymentType);
+		
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		String dateStr = simpleDateFormat.format(date);
+		BigDecimal orderNo = new BigDecimal(dateStr);
+		
+		order.setOrderNo(orderNo);
+		
+		HttpSession session = req.getSession();
+		User user = (User) session.getAttribute("user");
+		order.setUserId(user.getId());
+		
+		Integer status = 10;
+		order.setStatus(status);
+		
+		boolean result = orderService.addOrder(order);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+		
+		BuyCartVO buyCartVO = null;
+		Cookie[] cookies = req.getCookies();
+		System.out.println(cookies);
+		//1.如果cookie有这个购物车对象，那就从cookie里面取出这个购物车对象
+		if (null != cookies && cookies.length > 0) {
+			for (Cookie cookie : cookies) {
+				if ("buy_cart_cookie".equals(cookie.getName())) {
+					//之前已经有购物车
+					//"{\"items\":[{\"product\":{\"id\":45},\"amount\":1}],\"productId\":45}"
+					String value = cookie.getValue();
+					try {
+						buyCartVO = objectMapper.readValue(value, BuyCartVO.class);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		if (null != buyCartVO) {
+			List<CartItemVO> items = buyCartVO.getItems();
+			for (CartItemVO item : items) {
+				OrderItem orderItem = new OrderItem();
+				Integer productId = item.getProduct().getId();
+				orderItem.setProductId(productId);//商品id
+				
+				Product productTemp = productService.selectById(productId);
+				
+				String productName = productTemp.getName();
+				orderItem.setProductName(productName);//商品姓名
+				
+				String productImage = productTemp.getmain_image();
+				orderItem.setProductImage(productImage);//商品主图
+				System.out.println(currentUnitPrice);
+				orderItem.setCurrentUnitPrice((double)currentUnitPrice.intValue());
+				Integer totalPrice = currentUnitPrice.intValue() * item.getAmount();
+				orderItem.setTotalPrice(totalPrice);//商品总价
+				System.out.println(currentUnitPrice);
+				orderItem.setQuantity(item.getAmount());//商品数量
+				
+				orderItem.setUserId(user.getId());
+				
+				orderItem.setOrderNo(orderNo);
+				
+				boolean resultItem = orderService.addOrderItem(orderItem);
+				
+				System.out.println(orderItem);
+				model.addAttribute("orderItems",orderItem);
+			}
+		}
+				System.out.println(order);
+				model.addAttribute("order",order);
+		
+				//清除购物车
+				Cookie cookie = new Cookie("cart_items_list",null);
+				cookie.setPath("/");
+				cookie.setMaxAge(60 * 60 * 24 * 7);
+				
+				resp.addCookie(cookie);
+				
+				
+		return "redirect:/order/toOrederItems.shtml";
+	}
 	@RequestMapping(value = "/toOrederItems")
 	public String orderItems(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession(false);
@@ -112,8 +206,9 @@ public class FrontOrderController {
 		for (Order order : orderItems) {
 			System.out.println(order);
 			List<OrderItem> list = order.getList();
+			
 			for (OrderItem orderItem : list) {
-				System.out.println(orderItem);
+				/*System.out.println(orderItem);*/
 			}
 		}
 		return "orderItem";

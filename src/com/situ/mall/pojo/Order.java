@@ -10,7 +10,7 @@ public class Order implements Serializable{
 
 	private Integer id;
 
-	private String orderNo;
+	private BigDecimal orderNo;
 
 	private Integer userId;
 
@@ -42,7 +42,7 @@ public class Order implements Serializable{
 		super();
 	}
 
-	public Order(Integer id, String orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
+	public Order(Integer id, BigDecimal orderNo, Integer userId, Integer shippingId, BigDecimal payment, Integer paymentType,
 			Integer postage, Integer status, Date paymentTime, Date sendTime, Date endTime, Date closeTime,
 			Date createTime, Date updateTime) {
 		super();
@@ -70,11 +70,11 @@ public class Order implements Serializable{
 		this.id = id;
 	}
 
-	public String getOrderNo() {
+	public BigDecimal getOrderNo() {
 		return orderNo;
 	}
 
-	public void setOrderNo(String orderNo) {
+	public void setOrderNo(BigDecimal orderNo) {
 		this.orderNo = orderNo;
 	}
 

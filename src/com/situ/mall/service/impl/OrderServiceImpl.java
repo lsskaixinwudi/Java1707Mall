@@ -56,4 +56,18 @@ public class OrderServiceImpl implements IOrderService{
 		
 	}
 
+
+
+	@Override
+	public boolean addOrder(Order order) {
+		return orderDao.addOrder(order);
+	}
+
+
+
+	@Override
+	public boolean addOrderItem(OrderItem orderItem) {
+		return orderDao.addOrderItem(orderItem);
+	}
+
 }

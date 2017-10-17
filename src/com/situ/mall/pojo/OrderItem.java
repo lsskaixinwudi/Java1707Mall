@@ -8,7 +8,7 @@ public class OrderItem implements Serializable{
 
 	private Integer id;
 
-	private Long orderNo;
+	private BigDecimal orderNo;
 
 	private Integer productId;
 
@@ -16,11 +16,11 @@ public class OrderItem implements Serializable{
 
 	private String productImage;
 
-	private BigDecimal currentUnitPrice;
+	private Double currentUnitPrice;
 
 	private Integer quantity;
 
-	private BigDecimal totalPrice;
+	private Integer totalPrice;
 
 	private Date createTime;
 
@@ -32,8 +32,10 @@ public class OrderItem implements Serializable{
 		super();
 	}
 
-	public OrderItem(Integer id, Long orderNo, Integer productId, String productName, String productImage,
-			BigDecimal currentUnitPrice, Integer quantity, BigDecimal totalPrice, Date createTime, Date updateTime,
+
+
+	public OrderItem(Integer id, BigDecimal orderNo, Integer productId, String productName, String productImage,
+			Double currentUnitPrice, Integer quantity, Integer totalPrice, Date createTime, Date updateTime,
 			Integer userId) {
 		super();
 		this.id = id;
@@ -49,6 +51,8 @@ public class OrderItem implements Serializable{
 		this.userId = userId;
 	}
 
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -57,11 +61,11 @@ public class OrderItem implements Serializable{
 		this.id = id;
 	}
 
-	public Long getOrderNo() {
+	public BigDecimal getOrderNo() {
 		return orderNo;
 	}
 
-	public void setOrderNo(Long orderNo) {
+	public void setOrderNo(BigDecimal orderNo) {
 		this.orderNo = orderNo;
 	}
 
@@ -89,13 +93,19 @@ public class OrderItem implements Serializable{
 		this.productImage = productImage;
 	}
 
-	public BigDecimal getCurrentUnitPrice() {
+
+
+	public Double getCurrentUnitPrice() {
 		return currentUnitPrice;
 	}
 
-	public void setCurrentUnitPrice(BigDecimal currentUnitPrice) {
+
+
+	public void setCurrentUnitPrice(Double currentUnitPrice) {
 		this.currentUnitPrice = currentUnitPrice;
 	}
+
+
 
 	public Integer getQuantity() {
 		return quantity;
@@ -105,11 +115,11 @@ public class OrderItem implements Serializable{
 		this.quantity = quantity;
 	}
 
-	public BigDecimal getTotalPrice() {
+	public Integer getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(BigDecimal totalPrice) {
+	public void setTotalPrice(Integer totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 

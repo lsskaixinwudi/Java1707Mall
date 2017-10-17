@@ -14,7 +14,7 @@
 		 <result property="productImage" column="product_image"/>
 		 <result property="currentUnitPrice" column="current_unit_price"/>
 		 <result property="quantity" column="quantity"/>
-		 <result property="totalPrice" column="total_pric"/>
+		 <result property="totalPrice" column="total_price"/>
 		 <result property="createTime" column="payment_time" javaType="java.sql.Date" jdbcType="DATE" />
 		 <result property="updateTime" column="send_time" javaType="java.sql.Date" jdbcType="DATE" />
 	</resultMap>

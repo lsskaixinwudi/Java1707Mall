@@ -29,6 +29,7 @@ public class OrderControllerBack {
 	public String findOrderItem(Long orderNo, Model model){
 		List<OrderItem> list = orderItemService.findOrderItemByorder_no(orderNo);
 		model.addAttribute("list", list);
+		System.out.println(list);
 		return "order_show";
 	}
 	

@@ -15,4 +15,8 @@ public interface IOrderService {
 
 	void deletById(int id);
 
+	boolean addOrder(Order order);
+
+	boolean addOrderItem(OrderItem orderItem);
+
 }

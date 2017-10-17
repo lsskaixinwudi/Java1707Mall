@@ -1,263 +1,477 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@include file="../common/head.jsp" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+	<meta name="renderer" content="webkit">
+	<title>云购物商城-我的订单</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/front/js/jquery.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/front/js/index.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/front/js/modernizr-custom-v2.7.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/front/js/jquery.SuperSlide.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/css1/base.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/css1/home.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/front/css/css1/member.css">
+	
+	<script type="text/javascript">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+        var intDiff = parseInt(90000);//倒计时总秒数量
 
-		<title>订单管理</title>
-		<%@include file="../common/head.jsp" %>
-		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base.css">
-		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home.css">
-		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base1.css">
-		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home1.css">
+        function timer(intDiff){
+            window.setInterval(function(){
+                var day=0,
+                    hour=0,
+                    minute=0,
+                    second=0;//时间默认值
+                if(intDiff > 0){
+                    day = Math.floor(intDiff / (60 * 60 * 24));
+                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+                }
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                $('#day_show').html(day+"天");
+                $('#hour_show').html('<s id="h"></s>'+hour+'时');
+                $('#minute_show').html('<s></s>'+minute+'分');
+                $('#second_show').html('<s></s>'+second+'秒');
+                intDiff--;
+            }, 1000);
+        }
 
+        $(function(){
+            timer(intDiff);
+        });//倒计时结束
 
-	</head>
+        $(function(){
+	        /*======右按钮======*/
+            $(".you").click(function(){
+                nextscroll();
+            });
+            function nextscroll(){
+                var vcon = $(".v_cont");
+                var offset = ($(".v_cont li").width())*-1;
+                vcon.stop().animate({marginLeft:offset},"slow",function(){
+                    var firstItem = $(".v_cont ul li").first();
+                    vcon.find(".flder").append(firstItem);
+                    $(this).css("margin-left","0px");
+                });
+            };
+	        /*========左按钮=========*/
+            $(".zuo").click(function(){
+                var vcon = $(".v_cont");
+                var offset = ($(".v_cont li").width()*-1);
+                var lastItem = $(".v_cont ul li").last();
+                vcon.find(".flder").prepend(lastItem);
+                vcon.css("margin-left",offset);
+                vcon.animate({marginLeft:"0px"},"slow")
+            });
+        });
 
-	<body>
-		<!--头 -->
-		<header>
-			<article>
-				<div class="mt-logo">
-					<!--顶部导航条 -->
-					<div class="am-container header">
-						<ul class="message-l">
-							<div class="topMessage">
-								<div class="menu-hd">
-									<a href="#" target="_top" class="h">亲，请登录</a>
-									<a href="#" target="_top">免费注册</a>
-								</div>
-							</div>
-						</ul>
-						<ul class="message-r">
-							<div class="topMessage home">
-								<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
-							</div>
-							<div class="topMessage my-shangcheng">
-								<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-							</div>
-							<div class="topMessage mini-cart">
-								<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-							</div>
-							<div class="topMessage favorite">
-								<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
-						</ul>
+	</script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            var $miaobian=$('.Xcontent08>div');
+            var $huantu=$('.Xcontent06>img');
+            var $miaobian1=$('.Xcontent26>div');
+            $miaobian.mousemove(function(){miaobian(this);});
+            $miaobian1.click(function(){miaobian1(this);});
+            function miaobian(thisMb){
+                for(var i=0; i<$miaobian.length; i++){
+                    $miaobian[i].style.borderColor = '#dedede';
+                }
+                thisMb.style.borderColor = '#cd2426';
+
+                $huantu[0].src = thisMb.children[0].src;
+            }
+            function miaobian1(thisMb1){
+                for(var i=0; i<$miaobian1.length; i++){
+                    $miaobian1[i].style.borderColor = '#dedede';
+                }
+//		thisMb.style.borderColor = '#cd2426';
+                $miaobian.css('border-color','#dedede');
+                thisMb1.style.borderColor = '#cd2426';
+                $huantu[0].src = thisMb1.children[0].src;
+            }
+            $(".Xcontent33").click(function(){
+                var value=parseInt($('.input').val())+1;
+                $('.input').val(value);
+            })
+
+            $(".Xcontent32").click(function(){
+                var num = $(".input").val()
+                if(num>0){
+                    $(".input").val(num-1);
+                }
+
+            })
+
+        })
+	</script>
+
+</head>
+<body>
+
+<header id="pc-header">
+	<div class="pc-header-nav">
+		<div class="pc-header-con">
+			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fr pc-header-list top-nav">
+				<ul>
+					<li>
+						<div class="nav"><i class="pc-top-icon"></i><a href="#">我的订单</a></div>
+						<div class="con">
+							<dl>
+								<dt><a href="">批发进货</a></dt>
+								<dd><a href="">已买到货品</a></dd>
+								<dd><a href="">优惠券</a></dd>
+								<dd><a href="">店铺动态</a></dd>
+							</dl>
 						</div>
-
-						<!--悬浮搜索框-->
-
-						<div class="nav white">
-							<div class="logoBig">
-								<li><img src="../images/logobig.png" /></li>
-							</div>
-
-							<div class="search-bar pr">
-								<a name="index_none_header_sysc" href="#"></a>
-								<form>
-									<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-									<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-								</form>
-							</div>
+					</li>
+					<li>
+						<div class="nav"><i class="pc-top-icon"></i><a href="#">我的商城</a></div>
+						<div class="con">
+							<dl>
+								<dt><a href="">批发进货</a></dt>
+								<dd><a href="">已买到货品</a></dd>
+								<dd><a href="">优惠券</a></dd>
+								<dd><a href="">店铺动态</a></dd>
+							</dl>
 						</div>
-
-						<div class="clear"></div>
-					</div>
-				</div>
-			</article>
-		</header>
-            <div class="nav-table">
-					   <div class="long-title"><span class="all-goods">全部分类</span></div>
-					   <div class="nav-cont">
-							<ul>
-								<li class="index"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
-                                <li class="qc"><a href="#">限时抢</a></li>
-                                <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
-							</ul>
-						    <div class="nav-extra">
-						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
-						</div>
-			</div>
-			<b class="line"></b>
-		<div class="center">
-			<div class="col-main">
-				<div class="main-wrap">
-
-					<div class="user-order">
-
-						<!--标题 -->
-						<div class="am-cf am-padding">
-							<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">订单管理</strong> / <small>Order</small></div>
-						</div>
-						<hr/>
-
-						<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
-
-							<ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs">
-								<li class="am-active"><a href="#tab1">所有订单</a></li>
-								<li><a href="#tab2">待付款</a></li>
-								<li><a href="#tab3">待发货</a></li>
-								<li><a href="#tab4">待收货</a></li>
-								<li><a href="#tab5">待评价</a></li>
-							</ul>
-
-							<div class="am-tabs-bd">
-								<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-									<div class="order-top">
-										<div class="th th-item">
-											<td class="td-inner">商品</td>
-										</div>
-										<div class="th th-price">
-											<td class="td-inner">单价</td>
-										</div>
-										<div class="th th-number">
-											<td class="td-inner">数量</td>
-										</div>
-										<div class="th th-operation">
-											<td class="td-inner">商品操作</td>
-										</div>
-										<div class="th th-amount">
-											<td class="td-inner">合计</td>
-										</div>
-										<div class="th th-status">
-											<td class="td-inner">交易状态</td>
-										</div>
-										<div class="th th-change">
-											<td class="td-inner">交易操作</td>
-										</div>
-									</div>
-
-									<div class="order-main">
-										<div class="order-list">
-											
-											<!--交易成功-->
-										<c:forEach items="${orderItems}" var="order">
-											<div class="order-status5">
-												<div class="order-title">
-													<div class="dd-num">订单编号：<a href="javascript:;">${order.orderNo }</a></div>
-													<span>成交时间：${order.updateTime}</span>
-													<!--    <em>店铺：小桔灯</em>-->
-												</div>
-												<div class="order-content">
-													<div class="order-left">
-													<c:forEach items="${order.list}" var="orderItem">
-													<ul class="item-list">
-															<li class="td td-item">
-																<div class="item-pic">
-																	<img alt="" src="${orderItem.productImage}">
-																</div>
-																<div class="item-info">
-																	<div class="item-basic-info">
-																		<a href="#">
-																			<p>${orderItem.productName}</p>
-																			<!-- <p class="info-little">颜色：12#川南玛瑙
-																				<br/>包装：裸装 </p> -->
-																		</a>
-																	</div>
-																</div>
-															</li>
-															<li class="td td-price">
-																<div class="item-price">
-																	${orderItem.currentUnitPrice}
-																</div>
-															</li>
-															<li class="td td-number">
-																<div class="item-number">
-																	<span>×</span>${orderItem.quantity}
-																</div>
-															</li>
-															<li class="td td-operation">
-																<div class="item-operation">
-																	
-																</div>
-															</li>
-														</ul>
-													</c:forEach>
-													</div>
-														
-													<div class="order-right">
-														<li class="td td-amount">
-															<div class="item-amount">
-																合计：${order.totalPrice}
-																<p>含运费：<span>10.00</span></p>
-															</div>
-														</li>
-														<div class="move-right">
-															<li class="td td-status">
-																<div class="item-status">
-																	<p class="Mystatus">
-																		<!--订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭' -->
-																		<c:if test="${order.status == 0}">
-																			已取消
-																		</c:if>
-																		<c:if test="${order.status == 10}">
-																			未付款
-																		</c:if>
-																		<c:if test="${order.status == 20}">
-																			已付款
-																		</c:if>
-																		<c:if test="${order.status == 40}">
-																			已发货
-																		</c:if>
-																		<c:if test="${order.status == 50}">
-																			交易成功
-																		</c:if>
-																		<c:if test="${order.status == 60}">
-																			交易关闭
-																		</c:if>
-																	</p>
-																	<p class="order-info"><a href="${path}/order/orderDetails.shtml?orderNo=${order.orderNo}">订单详情</a></p>
-																	<p class="order-info"><a href="logistics.html">查看物流</a></p>
-																</div>
-															</li>
-															<li class="td td-change">
-																<div class="am-btn am-btn-danger anniu">
-																	删除订单</div>
-															</li>
-														</div>
-													</div>
-												</div>
-											</div>
-										</c:forEach>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<!--底部-->
-				<div class="footer">
-					<div class="footer-hd">
-						<p>
-							<a href="#">恒望科技</a>
-							<b>|</b>
-							<a href="#">商城首页</a>
-							<b>|</b>
-							<a href="#">支付宝</a>
-							<b>|</b>
-							<a href="#">物流</a>
-						</p>
-					</div>
-					<div class="footer-bd">
-						<p>
-							<a href="#">关于恒望</a>
-							<a href="#">合作伙伴</a>
-							<a href="#">联系我们</a>
-							<a href="#">网站地图</a>
-							<em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
-						</p>
-					</div>
-
-				</div>
+					</li>
+					<li><a href="#">我的云购</a></li>
+					<li><a href="#">我的收藏</a></li>
+					<li><a href="#">会员中心</a></li>
+					<li><a href="#">客户服务</a></li>
+					<li><a href="#">帮助中心</a></li>
+				</ul>
 			</div>
 		</div>
+	</div>
+	<div class="pc-header-logo clearfix">
+		<div class="pc-fl-logo fl">
+			<h1>
+				<a href="index.html"></a>
+			</h1>
+		</div>
+		<div class="head-form fl">
+			<form class="clearfix">
+				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
+				<button class="button" onclick="search('key');return false;">搜索</button>
+			</form>
+			<div class="words-text clearfix">
+				<a href="#" class="red">1元秒爆</a>
+				<a href="#">低至五折</a>
+				<a href="#">农用物资</a>
+				<a href="#">佳能相机</a>
+				<a href="#">服装城</a>
+				<a href="#">买4免1</a>
+				<a href="#">家电秒杀</a>
+				<a href="#">农耕机械</a>
+				<a href="#">手机新品季</a>
+			</div>
+		</div>
+		<div class="fr pc-head-car">
+			<i class="icon-car"></i>
+			<a href="#">我的购物车</a>
+			<em>10</em>
+		</div>
+	</div>
+	<!--  顶部    start-->
+	<div class="yHeader">
+		<!-- 导航   start  -->
+		<div class="yNavIndex">
+			<ul class="yMenuIndex" style="margin-left:0">
+				<li style="background:#d1201e"><a href="" target="_blank">云购首页</a></li>
+				<li><a href="" target="_blank">女士护肤 </a></li>
+				<li><a href="" target="_blank">男士护肤</a></li>
+				<li><a href="" target="_blank">洗护染发</a></li>
+				<li><a href="" target="_blank">染发</a></li>
+				<li><a href="" target="_blank">彩妆</a></li>
+				<li><a href="" target="_blank">品牌故事</a></li>
+			</ul>
+		</div>
+		<!-- 导航   end  -->
+	</div>
 
-	</body>
+</header>
 
+<div class="containers center"><div class="pc-nav-item"><a href="#">首页</a> &gt; <a href="#">会员中心 </a> &gt; <a href="#">商城快讯</a></div></div>
+<section id="member">
+	<div class="member-center clearfix">
+		<div class="member-left fl">
+			<div class="member-apart clearfix">
+				<div class="fl"><a href="#"><img src="img/mem.png"></a></div>
+				<div class="fl">
+					<p>用户名：</p>
+					<p><a href="#">亚里士多德</a></p>
+					<p>搜悦号：</p>
+					<p>389323080</p>
+				</div>
+			</div>
+			<div class="member-lists">
+				<dl>
+					<dt>我的商城</dt>
+					<dd class="cur"><a href="#">我的订单</a></dd>
+					<dd><a href="#">我的收藏</a></dd>
+					<dd><a href="#">账户安全</a></dd>
+					<dd><a href="#">我的评价</a></dd>
+					<dd><a href="#">地址管理</a></dd>
+				</dl>
+				<dl>
+					<dt>客户服务</dt>
+					<dd><a href="#">退货申请</a></dd>
+					<dd><a href="#">退货/退款记录</a></dd>
+				</dl>
+				<dl>
+					<dt>我的消息</dt>
+					<dd><a href="#">商城快讯</a></dd>
+					<dd><a href="#">帮助中心</a></dd>
+				</dl>
+			</div>
+		</div>
+		<div class="member-right fr">
+			<div class="member-head">
+				<div class="member-heels fl"><h2>我的订单</h2></div>
+				<div class="member-backs member-icons fr"><a href="#">搜索</a></div>
+				<div class="member-about fr"><input placeholder="商品名称/商品编号/订单编号" type="text"></div>
+			</div>
+			<div class="member-whole clearfix">
+				<ul id="H-table" class="H-table">
+					<li class="cur"><a href="#">我的订单</a></li>
+					<li><a href="#">待付款<em>(44)</em></a></li>
+					<li><a href="#">待发货</a></li>
+					<li><a href="#">待收货</a></li>
+					<li><a href="#">交易完成</a></li>
+					<li><a href="#">订单信息</a></li>
+				</ul>
+			</div>
+			<div class="member-border">
+				<div class="member-return H-over">
+					<div class="member-cancel clearfix">
+						<span class="be1">订单信息</span>
+						<span class="be2">收货人</span>
+						<span class="be2">订单金额</span>
+						<span class="be2">订单时间</span>
+						<span class="be2">订单状态</span>
+						<span class="be2">订单操作</span>
+					</div>
+					<div class="member-sheet clearfix">
+						<c:forEach items="${orderItems}" var="order">
+							<div class="order-status5">
+								<div class="order-title">
+									<div class="dd-num">订单编号：<a href="javascript:;">${order.orderNo}</a></div>
+									<span>成交时间：${order.updateTime}</span>
+									<!--    <em>店铺：小桔灯</em>-->
+								</div>
+								<div class="order-content">
+									<div class="order-left">
+									<c:forEach items="${order.list}" var="orderItem">
+									<ul class="item-list">
+											<li class="td td-item">
+												<div class="item-pic">
+													<img alt="" src="/pic/${orderItem.productImage}" width="100" height="100">
+												</div>
+												<div class="item-info">
+													<div class="item-basic-info">
+														<a href="#">
+															<p>${orderItem.productName}</p>
+															<!-- <p class="info-little">颜色：12#川南玛瑙
+																<br/>包装：裸装 </p> -->
+														</a>
+													</div>
+												</div>
+											</li>
+											<li class="td td-price">
+												<div class="item-price">
+													${orderItem.currentUnitPrice}
+												</div>
+											</li>
+											<li class="td td-number">
+												<div class="item-number">
+													<span>×</span>${orderItem.quantity}
+												</div>
+											</li>
+											<li class="td td-operation">
+												<div class="item-operation">
+													
+												</div>
+											</li>
+										</ul>
+										</c:forEach>
+									</div>
+										
+									<div class="order-right">
+										<li class="td td-amount">
+											<div class="item-amount">
+												合计：${orderItem.totalPrice}
+												<p>含运费：<span>0.00</span></p>
+											</div>
+										</li>
+										<div class="move-right">
+											<li class="td td-status">
+												<div class="item-status">
+													<p class="Mystatus">
+														<!--订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭' -->
+														<c:if test="${order.status == 0}">
+															已取消
+														</c:if>
+														<c:if test="${order.status == 10}">
+															未付款
+														</c:if>
+														<c:if test="${order.status == 20}">
+															已付款
+														</c:if>
+														<c:if test="${order.status == 40}">
+															已发货
+														</c:if>
+														<c:if test="${order.status == 50}">
+															交易成功
+														</c:if>
+														<c:if test="${order.status == 60}">
+															交易关闭
+														</c:if>
+													</p>
+													<p class="order-info"><a href="${path}/order/orderDetails.shtml?orderNo=${order.orderNo}">订单详情</a></p>
+													<p class="order-info"><a href="logistics.html">查看物流</a></p>
+												</div>
+											</li>
+											<li class="td td-change">
+												<div class="am-btn am-btn-danger anniu">
+													删除订单</div>
+											</li>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="H-over member-over" style="display:none;"><h2>待发货</h2></div>
+				<div class="H-over member-over" style="display:none;"><h2>待收货</h2></div>
+				<div class="H-over member-over" style="display:none;"><h2>交易完成</h2></div>
+				<div class="H-over member-over" style="display:none;"><h2>订单信息</h2></div>
+
+				<div class="clearfix" style="padding:30px 20px;">
+					<div class="fr pc-search-g pc-search-gs">
+						<a style="display:none" class="fl " href="#">上一页</a>
+						<a href="#" class="current">1</a>
+						<a href="javascript:;">2</a>
+						<a href="javascript:;">3</a>
+						<a href="javascript:;">4</a>
+						<a href="javascript:;">5</a>
+						<a href="javascript:;">6</a>
+						<a href="javascript:;">7</a>
+						<span class="pc-search-di">…</span>
+						<a href="javascript:;">1088</a>
+						<a title="使用方向键右键也可翻到下一页哦！" class="" href="javascript:;">下一页</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div style="height:100px"></div>
+
+<footer>
+	<div class="pc-footer-top">
+		<div class="center">
+			<ul class="clearfix">
+				<li>
+					<span>关于我们</span>
+					<a href="#">关于我们</a>
+					<a href="#">诚聘英才</a>
+					<a href="#">用户服务协议</a>
+					<a href="#">网站服务条款</a>
+					<a href="#">联系我们</a>
+				</li>
+				<li class="lw">
+					<span>购物指南</span>
+					<a href="#">新手上路</a>
+					<a href="#">订单查询</a>
+					<a href="#">会员介绍</a>
+					<a href="#">网站服务条款</a>
+					<a href="#">帮助中心</a>
+				</li>
+				<li class="lw">
+					<span>消费者保障</span>
+					<a href="#">人工验货</a>
+					<a href="#">退货退款政策</a>
+					<a href="#">运费补贴卡</a>
+					<a href="#">无忧售后</a>
+					<a href="#">先行赔付</a>
+				</li>
+				<li class="lw">
+					<span>商务合作</span>
+					<a href="#">人工验货</a>
+					<a href="#">退货退款政策</a>
+					<a href="#">运费补贴卡</a>
+					<a href="#">无忧售后</a>
+					<a href="#">先行赔付</a>
+				</li>
+				<li class="lss">
+					<span>下载手机版</span>
+					<div class="clearfix lss-pa">
+						<div class="fl lss-img"><img src="${pageContext.request.contextPath}/resources/front/img/icon/code.png" alt=""></div>
+						<div class="fl" style="padding-left:20px">
+							<h4>扫描下载云购APP</h4>
+							<p>把优惠握在手心</p>
+							<P>把潮流带在身边</P>
+							<P></P>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="pc-footer-lin">
+			<div class="center">
+				<p>友情链接：
+					卡宝宝信用卡
+					梦芭莎网上购物
+					手游交易平台
+					法律咨询
+					深圳地图
+					P2P网贷导航
+					名鞋库
+					万表网
+					叮当音乐网
+					114票务网
+					儿歌视频大全
+				</p>
+				<p>
+					京ICP证1900075号  京ICP备20051110号-5  京公网安备110104734773474323  统一社会信用代码 91113443434371298269B  食品流通许可证SP1101435445645645640352397
+				</p>
+				<p style="padding-bottom:30px">版物经营许可证 新出发京零字第朝160018号  Copyright©2011-2015 版权所有 ZHE800.COM </p>
+			</div>
+		</div>
+	</div>
+</footer>
+<script type="text/javascript">
+    //hover 触发两个事件，鼠标移上去和移走
+    //mousehover 只触发移上去事件
+    $(".top-nav ul li").hover(function(){
+        $(this).addClass("hover").siblings().removeClass("hover");
+        $(this).find("li .nav a").addClass("hover");
+        $(this).find(".con").show();
+    },function(){
+        //$(this).css("background-color","#f5f5f5");
+        $(this).find(".con").hide();
+        //$(this).find(".nav a").removeClass("hover");
+        $(this).removeClass("hover");
+        $(this).find(".nav a").removeClass("hover");
+    })
+</script>
+</body>
 </html>

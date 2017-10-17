@@ -65,10 +65,10 @@
   		<select id="findAll" resultMap="OrderMap">
   			select order.id,order.order_no,order.user_id,order.shipping_id,order.payment_type,
   			order.payment,order.status,order.payment_time,order.send_time,order.end_time,order.close_time,
-  			order.create_time,order.update_time from order;
+  			order.create_time,order.update_time from orders;
   		</select>
   		<insert id="addOrder" parameterType="Order">
-  			insert into order(order_no,user_id,shipping_id,payment_type,
+  			insert into orders(order_no,user_id,shipping_id,payment_type,
   			payment,status,payment_time,send_time,end_time,close_time,create_time,
   			update_time) 
   			values(#{orderNo},#{userId},#{shippingId},#{paymentType},
