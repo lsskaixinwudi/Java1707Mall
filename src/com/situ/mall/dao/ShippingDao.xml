@@ -34,6 +34,24 @@
 		
 		<select id="selectById" parameterType="int" resultMap="ShippingInfoMap">
 			SELECT <include refid="Base_Column_List"></include> FROM shipping where user_id = #{id}
-			
 		</select>
+		
+		<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM
+		shipping
+		</select>
+		
+		<select id="findPageBeanList" resultMap="ShippingInfoMap">
+			select <include refid="Base_Column_List"></include> from shipping
+			limit #{index},#{pageSize}
+		</select>
+		
+		<delete id="deletById" parameterType="int">
+				delete from shipping where id=#{id}
+		</delete>
+			
+	    <insert id="add" parameterType="int" >
+			 insert into shipping(user_id,receiver_name,receiver_phone,receiver_mobile,receiver_province,receiver_city,receiver_district,receiver_address,receiver_zip,create_time,update_time)
+		 	 values(#{user_id},#{receiver_name},#{receiver_phone},#{receiver_mobile},#{receiver_province},#{receiver_province},#{receiver_district},#{receiver_address},#{receiver_zip},now(),now())
+		</insert>
     </mapper>

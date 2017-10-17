@@ -44,6 +44,22 @@ public class FrontOrderController {
 	@Resource(name="orderService")
 	private IOrderService orderService;
 	
+	@RequestMapping(value="/loginSession.shtml")
+	public String loginSession(Model model, HttpServletRequest req){
+		String path = null;
+		HttpSession session = req.getSession();
+		User user = (User) session.getAttribute("user");
+		System.out.println(user);
+		if (user != null) {
+			
+				System.out.println(user);
+				path="redirect:/order/prepareOrder.shtml";
+			} else {
+				path = "login";
+			}
+		System.out.println(path);
+		return path;
+	}
 	@RequestMapping("/prepareOrder.shtml")
     public String prepareOrder(Model model,HttpServletRequest request) {
 		HttpSession session = request.getSession(false);

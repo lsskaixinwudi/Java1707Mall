@@ -9,11 +9,10 @@
 
 		<title>订单管理</title>
 		<%@include file="../common/head.jsp" %>
-		<link href="${path}/thirds/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="${path}/thirds/css/amazeui.css" rel="stylesheet" type="text/css">
-
-		<link href="${path}/thirds/css/personal.css" rel="stylesheet" type="text/css">
-		<link href="${path}/thirds/css/orstyle.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base.css">
+		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home.css">
+		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/base1.css">
+		<link rel="stylesheet" type="text/css" href="${ctx}/resources/front/css/home1.css">
 
 
 	</head>

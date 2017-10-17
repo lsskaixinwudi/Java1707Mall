@@ -6,7 +6,7 @@
   	<resultMap type="Order" id="OrderMap">
   		 <id column="id" property="id"/> 
   		 <result column="order_no" property="orderNo"/>
-  		 <result column="user_id" property="user_id"/> 
+  		 <result column="user_id" property="userId"/> 
   		 <result column="shipping_id" property="shippingId"/>  
   		 <result column="payment" property="payment"/>  
   		 <result column="payment_type" property="paymentType"/>
@@ -80,4 +80,18 @@
   			quantity,total_price,create_time,update_time) value(#{userId},#{orderNo},#{productId},#{productName},#{productImage},#{currentUnitPrice},
   			#{quantity},#{totalPrice},now(),now());
   		</insert>
+  		
+  		<select id="getTotalCount" resultType="int">
+			SELECT COUNT(*) FROM
+			orders
+		</select>
+		
+		<select id="findPageBeanList" resultMap="OrderMap">
+			select * from orders 
+			limit #{index},#{pageSize}
+		</select>
+		
+		<delete id="deletById" parameterType="int">
+			delete from orders where id=#{id}
+		</delete>
   </mapper>
