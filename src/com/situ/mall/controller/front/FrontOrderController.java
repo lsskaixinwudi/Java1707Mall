@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.situ.mall.constant.MallConstant;
 import com.situ.mall.pojo.Order;
 import com.situ.mall.pojo.OrderItem;
 import com.situ.mall.pojo.Product;
@@ -82,8 +83,6 @@ public class FrontOrderController {
 			for (Cookie cookie : cookies) {
 				System.out.println(cookie.getName());
 				if ("buy_cart_cookie".equals(cookie.getName())) {
-					//之前购物车中已经存在
-					//"{\"items\":[{\"product\":{\"id\":45},\"amount\":1}],\"productId\":45}"
 					String value = cookie.getValue();
 					try {
 						buyCartVO = objectMapper.readValue(value, BuyCartVO.class);
@@ -105,12 +104,12 @@ public class FrontOrderController {
 		return "order";
 	}
 	@RequestMapping(value="addOrder.shtml")
-	public String addOrder(Model model, Integer shippingId, Integer paymentType, HttpServletRequest req, HttpServletResponse resp, BigDecimal currentUnitPrice) {
+	public String addOrder(Model model, Integer shippingId, Integer paymentType, HttpServletRequest req, HttpServletResponse resp,HttpServletResponse response, BigDecimal currentUnitPrice) {
 		Order order = new Order();
 		
-		order.setShippingId(shippingId);
 		
 		order.setPaymentType(paymentType);
+		System.out.println(paymentType);
 		
 		Date date = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
@@ -122,6 +121,11 @@ public class FrontOrderController {
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
 		order.setUserId(user.getId());
+		Shipping shipping = shippingService.findByUserId(user.getId());
+		order.setShippingId(shipping.getId());
+		System.out.println(shippingId);
+		
+
 		
 		Integer status = 10;
 		order.setStatus(status);
@@ -185,11 +189,12 @@ public class FrontOrderController {
 				model.addAttribute("order",order);
 		
 				//清除购物车
-				Cookie cookie = new Cookie("cart_items_list",null);
-				cookie.setPath("/");
-				cookie.setMaxAge(60 * 60 * 24 * 7);
 				
-				resp.addCookie(cookie);
+				Cookie cookie = new Cookie("buy_cart_cookie",null);
+			       cookie.setPath("/");
+			       cookie.setMaxAge(0);
+			       response.addCookie(cookie);
+
 				
 				
 		return "redirect:/order/toOrederItems.shtml";

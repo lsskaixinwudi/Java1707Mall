@@ -265,8 +265,9 @@
 						<span class="be2">订单状态</span>
 						<span class="be2">订单操作</span>
 					</div>
+				<%-- 	<c:forEach items="${orderItems}" var="order">
 					<div class="member-sheet clearfix">
-						<c:forEach items="${orderItems}" var="order">
+						
 							<div class="order-status5">
 								<div class="order-title">
 									<div class="dd-num">订单编号：<a href="javascript:;">${order.orderNo}</a></div>
@@ -307,7 +308,7 @@
 												</div>
 											</li>
 										</ul>
-										</c:forEach>
+										
 									</div>
 										
 									<div class="order-right">
@@ -317,6 +318,7 @@
 												<p>含运费：<span>0.00</span></p>
 											</div>
 										</li>
+										</c:forEach>
 										<div class="move-right">
 											<li class="td td-status">
 												<div class="item-status">
@@ -355,12 +357,42 @@
 							</div>
 						</c:forEach>
 					</div>
-				</div>
+				</div> --%>
+					<c:forEach items="${orderItems}" var="order">
+				<div class="member-sheet clearfix">
+						<ul>
+							<li>
+								<div class="member-minute clearfix">
+									<span>${order.updateTime}</span>
+									<span>订单号：<em>${order.orderNo}</em></span>
+									<span><a href="#">以纯甲醇旗舰店</a></span>
+									<span class="member-custom">客服电话：<em>010-6544-0986</em></span>
+								</div>
+								<c:forEach items="${order.list}" var="orderItem">
+								<div class="member-circle clearfix">
+									<div class="ci1">
+										<div class="ci7 clearfix">
+											<span class="gr1"><a href="#"><img src="/pic/${orderItem.productImage}" title="" about="" width="60" height="60"></a></span>
+											<span class="gr2"><a href="#">${orderItem.productName}</a></span>
+											<span class="gr3">X${orderItem.quantity}</span>
+										</div>
+									</div>
+									<div class="ci2">${user.username}</div>
+									<div class="ci3"><b>￥${orderItem.totalPrice}</b><p>货到付款</p><p class="iphone">手机订单</p></div>
+									<div class="ci4"><p>${order.updateTime}</p></div>
+									<div class="ci5"><p>等待付款</p> <p><a href="#">物流跟踪</a></p> <p><a href="#">订单详情</a></p></div>
+									<div class="ci5 ci8"><p>剩余15时20分</p> <p><a href="#" class="member-touch">立即支付</a> </p> <p><a href="#">取消订单</a> </p></div>
+								</div>
+								</c:forEach>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
 				<div class="H-over member-over" style="display:none;"><h2>待发货</h2></div>
 				<div class="H-over member-over" style="display:none;"><h2>待收货</h2></div>
 				<div class="H-over member-over" style="display:none;"><h2>交易完成</h2></div>
 				<div class="H-over member-over" style="display:none;"><h2>订单信息</h2></div>
-
+				
 				<div class="clearfix" style="padding:30px 20px;">
 					<div class="fr pc-search-g pc-search-gs">
 						<a style="display:none" class="fl " href="#">上一页</a>

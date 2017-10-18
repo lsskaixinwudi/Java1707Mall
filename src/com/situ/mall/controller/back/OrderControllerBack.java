@@ -27,6 +27,7 @@ public class OrderControllerBack {
 	//鏌ヨ
 	@RequestMapping(value="/findOrderItem")
 	public String findOrderItem(Long orderNo, Model model){
+		System.out.println(orderNo);
 		List<OrderItem> list = orderItemService.findOrderItemByorder_no(orderNo);
 		model.addAttribute("list", list);
 		System.out.println(list);

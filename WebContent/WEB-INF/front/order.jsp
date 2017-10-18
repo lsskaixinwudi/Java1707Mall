@@ -145,7 +145,7 @@
 								<!---->
 							</div>
 							<div class="box-bd">
-								<div class="clearfix xm-address-list" id="checkoutAddrList">
+								<div class="clearfix xm-address-list" id="checkoutAddrList" name = "shippingId" value = "shipping_id">
 									<dl class="item" >
 										<dt>
 											<strong class="itemConsignee">${shipping.receiver_name}</strong>
@@ -235,7 +235,7 @@
 								<div class="box-bd">
 									<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
 										<li class="item selected">
-											<input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
+											<input type="checkbox" name="Checkout[pay_id]" checked="checked" value="1" id="paymenType" name="paymenType">
 											<p>
 												在线支付                                <span></span>
 											</p>

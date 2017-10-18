@@ -3,6 +3,7 @@ package com.situ.mall.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class OrderItem implements Serializable{
 
@@ -27,6 +28,8 @@ public class OrderItem implements Serializable{
 	private Date updateTime;
 
 	private Integer userId;
+	
+	private List<OrderItem> list;
 
 	public OrderItem() {
 		super();
@@ -49,6 +52,38 @@ public class OrderItem implements Serializable{
 		this.createTime = createTime;
 		this.updateTime = updateTime;
 		this.userId = userId;
+	}
+	
+
+
+	public List<OrderItem> getList() {
+		return list;
+	}
+
+
+
+	public void setList(List<OrderItem> list) {
+		this.list = list;
+	}
+
+
+
+	public OrderItem(Integer id, BigDecimal orderNo, Integer productId, String productName, String productImage,
+			Double currentUnitPrice, Integer quantity, Integer totalPrice, Date createTime, Date updateTime,
+			Integer userId, List<OrderItem> list) {
+		super();
+		this.id = id;
+		this.orderNo = orderNo;
+		this.productId = productId;
+		this.productName = productName;
+		this.productImage = productImage;
+		this.currentUnitPrice = currentUnitPrice;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.userId = userId;
+		this.list = list;
 	}
 
 
@@ -147,13 +182,16 @@ public class OrderItem implements Serializable{
 		this.userId = userId;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "OrderItem [id=" + id + ", orderNo=" + orderNo + ", productId=" + productId + ", productName="
 				+ productName + ", productImage=" + productImage + ", currentUnitPrice=" + currentUnitPrice
 				+ ", quantity=" + quantity + ", totalPrice=" + totalPrice + ", createTime=" + createTime
-				+ ", updateTime=" + updateTime + ", userId=" + userId + "]";
+				+ ", updateTime=" + updateTime + ", userId=" + userId + ", list=" + list + "]";
 	}
+
 	
 	
 }
