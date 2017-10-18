@@ -8,10 +8,55 @@
 		<meta charset="UTF-8">
 		<title>靓淘网</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/front/css/index_style.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/front/css/login_layer_style.css" />
+		<script type="text/javascript">
+			function login(){
+				layer.open({
+					type:2,//(iframe层)
+					title:'用户登录',
+					area: ['500px', '500px'],
+					offset: '200px',//只定义top坐标，水平保持居中
+					content:"${ctx}/user/getLoginPage.shtml"
+				});
+			}
+			function login1(){
+				layer.open({
+					type:1,//（iframe层）
+					title:'用户登录',
+					area: ['500px', '400px'],
+					offset: '200px',//只定义top坐标，水平保持居中
+					content:$('#login')
+				});
+			}
+			
+			function submitForm() {
+				var options = {
+						url:"${ctx}/user/login.shtml",
+						type:"post",
+						dataType:"json",
+						data:$("#login_form").serialize(),
+						success:function(data){
+							if(data.status == 0) {
+								parent.layer.msg(data.msg);
+								//当你在iframe页面关闭自身时
+								var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+								setTimeout(function(){
+									parent.layer.close(index); //再执行关闭  
+									window.parent.location.reload();//刷新父页面
+								},1000);
+							} else {
+								layer.msg(data.msg);
+							} 
+						}
+				};
+				$.ajax(options);
+			}
+			
+		</script>
 	</head>
 
 	<body>
-		<!-----------------------1.top-------------------->
+		<!-----------------------1.top---------q----------->
 		<div class="bg_color">
 			<div class="top_center">
 				<div class="left">
@@ -21,7 +66,7 @@
 				</div>
 				<div class="right">
 					<ul>
-						<li><a class="login" href="${pageContext.request.contextPath}/login/toLogin.shtml" target="_blank">请登录</a></li>
+						<li><a class="login" href="javascript:login()" target="_blank">请登录</a></li>
 						<li><a href="${pageContext.request.contextPath}/register/getAddRegister.shtml" target="_blank">快速注册</a></li>
 						<li><a class="collect" href="">我的收藏</a></li>
 						<li><a class="indent" href="">我的订单</a></li>
@@ -680,6 +725,7 @@
 				}
 			) */
 		</script>
+		
 	</body>
 
 </html>
