@@ -21,6 +21,7 @@
 				</div>
 				<div class="right">
 					<ul>
+						<li><a class="collect" href="">注销</a></li>
 						<li><a class="collect" href="">我的收藏</a></li>
 						<li><a class="indent" href="${pageContext.request.contextPath}/order/loginSession.shtml">我的订单</a></li>
 						<li><a class="phone" href="">手机靓淘</a></li>

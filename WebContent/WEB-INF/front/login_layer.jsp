@@ -23,6 +23,10 @@
 								setTimeout(function(){
 									parent.layer.close(index); //再执行关闭  
 									window.parent.location.reload();//刷新父页面
+									/* window.location="http://localhost:8080/Java1707Mall/login/loginIndex.shtml“; */
+									/* self.location='http://localhost:8080/Java1707Mall/login/loginIndex.shtml'; */
+									/* window.navigate(window.navigate("http://localhost:8080/Java1707Mall/login/loginIndex.shtml")); */
+									/* window.location.href="http://localhost:8080/Java1707Mall/login/loginIndex.shtml"; */
 								},1000);
 							} else {
 								layer.msg(data.msg);

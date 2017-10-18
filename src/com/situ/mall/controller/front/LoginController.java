@@ -5,10 +5,12 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.User;
@@ -68,5 +70,12 @@ public class LoginController {
 	public String register(User user) {
 		boolean result = loginService.addUser(user);
 		return "redirect:/login/toLogin.shtml";
+	}
+	@RequestMapping(value="logout")
+	/*@ResponseBody*/
+	public String logout(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
+		session.invalidate();
+		return "redirect:/";
 	}
 }

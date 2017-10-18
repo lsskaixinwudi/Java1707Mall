@@ -1,6 +1,9 @@
 package com.situ.mall.controller.front;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -8,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.situ.mall.common.ServerResponse;
+import com.situ.mall.pojo.User;
+import com.situ.mall.service.ILoginService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+	@Resource(name="loginService")
+	private ILoginService loginService;
 	@RequestMapping("/getLoginPage")
 	public String getLoginPage() {
 		return "login_layer";
@@ -23,10 +29,15 @@ public class UserController {
 	public ServerResponse login(String name, String password, HttpServletRequest request) {
 		System.out.println("name:" + name);
 		System.out.println("password:" + password);
-		if (null != name && name.equals("zhangsan")) {
-			HttpSession session = request.getSession();
-			session.setAttribute("name", "zhangsan");
-			return ServerResponse.createSuccess("µÇÂ¼³É¹¦");
+		User user = new User(name, password);
+		User resultUser = loginService.getUser(user);
+		if (user != null && resultUser != null) {
+			if (user.getusername().equals(resultUser.getusername() ) && user.getPassword().equals(resultUser.getPassword())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", resultUser);
+				return ServerResponse.createSuccess("µÇÂ¼³É¹¦");
+			}
+			return ServerResponse.createError("µÇÂ¼Ê§°Ü");
 		}
 		return ServerResponse.createError("µÇÂ¼Ê§°Ü");
 	}

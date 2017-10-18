@@ -43,6 +43,10 @@
 								setTimeout(function(){
 									parent.layer.close(index); //再执行关闭  
 									window.parent.location.reload();//刷新父页面
+									/* window.location="http://localhost:8080/Java1707Mall/login/loginIndex.shtml“; */
+									/* self.location='http://localhost:8080/Java1707Mall/login/loginIndex.shtml'; */
+									/* window.navigate(window.navigate("http://localhost:8080/Java1707Mall/login/loginIndex.shtml")); */
+									/* window.location.href="http://localhost:8080/Java1707Mall/login/loginIndex.shtml"; */
 								},1000);
 							} else {
 								layer.msg(data.msg);
@@ -66,8 +70,14 @@
 				</div>
 				<div class="right">
 					<ul>
-						<li><a class="login" href="javascript:login()" target="_blank">请登录</a></li>
-						<li><a href="${pageContext.request.contextPath}/register/getAddRegister.shtml" target="_blank">快速注册</a></li>
+						<c:if test="${empty user.username}">
+							<li><a  href="javascript:login()"   target="_blank">请登录</a></li>
+							<li><a href="register.html" target="_blank">快速注册</a></li>
+						</c:if>
+						<c:if test="${!empty user.username}">
+							<li><a  href="javascript:login1()"   target="_blank">${user.username}</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.shtml" target="_blank">注销</a></li>
+						</c:if>
 						<li><a class="collect" href="">我的收藏</a></li>
 						<li><a class="indent" href="">我的订单</a></li>
 						<li><a class="phone" href="">手机靓淘</a></li>
