@@ -371,11 +371,13 @@
 								<c:forEach items="${order.list}" var="orderItem">
 								<div class="member-circle clearfix">
 									<div class="ci1">
+									
 										<div class="ci7 clearfix">
 											<span class="gr1"><a href="#"><img src="/pic/${orderItem.productImage}" title="" about="" width="60" height="60"></a></span>
 											<span class="gr2"><a href="#">${orderItem.productName}</a></span>
 											<span class="gr3">X${orderItem.quantity}</span>
 										</div>
+									
 									</div>
 									<div class="ci2">${user.username}</div>
 									<div class="ci3"><b>￥${orderItem.totalPrice}</b><p>货到付款</p><p class="iphone">手机订单</p></div>
