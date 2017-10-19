@@ -157,12 +157,13 @@ public class FrontOrderController {
 		if (null != buyCartVO) {
 			List<CartItemVO> items = buyCartVO.getItems();
 			for (CartItemVO item : items) {
+				
 				OrderItem orderItem = new OrderItem();
 				Integer productId = item.getProduct().getId();
 				orderItem.setProductId(productId);//商品id
-				
 				Product productTemp = productService.selectById(productId);
-				
+
+				System.out.println(currentUnitPrice);
 				String productName = productTemp.getName();
 				orderItem.setProductName(productName);//商品姓名
 				
@@ -183,6 +184,8 @@ public class FrontOrderController {
 				
 				System.out.println(orderItem);
 				model.addAttribute("orderItems",orderItem);
+			
+				
 			}
 		}
 				System.out.println(order);
