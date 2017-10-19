@@ -1,17 +1,22 @@
 package com.situ.mall.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.situ.mall.common.ServerResponse;
+import com.situ.mall.constant.MallConstant;
 import com.situ.mall.dao.ProductDao;
 import com.situ.mall.dao.ProductDao;
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.service.IProductService;
+import com.situ.mall.service.IStaticPageService;
 import com.situ.mall.vo.PageBean;
 import com.situ.mall.vo.SearchCondition;
 
@@ -20,7 +25,8 @@ public class ProductServiceImpl implements IProductService{
 	@Resource(name="productDao")
 	private ProductDao productDao;
 	
-	
+	@Resource(name="staticPageService")
+	private IStaticPageService staticPageService;
 	@Override
 	public List<Product> findAll() {
 		return productDao.findAll();
@@ -97,5 +103,33 @@ public class ProductServiceImpl implements IProductService{
 	public List<Product> findCategoryListById(int id) {
 		return productDao.findCategoryListById(id);
 	}
+
+	@Override
+	public ServerResponse show(Integer id) {
+	    if (id == null) {
+	       return ServerResponse.createError("id不能为空");
+	    }
+	    Product product = productDao.selectById(id);
+	    if (null == product) {
+	       return ServerResponse.createError("产品不存在");
+	    }
+	    product.setStatus(1);
+	    Map<String,Object> map = new HashMap<String,Object>();
+	    map.put("product", product);
+	    
+	    //按照“，”分割subImages，
+	    String subImagesStr = product.getsub_images();
+	    if (null != subImagesStr && !subImagesStr.equals("")) {
+	       String[] subImages = subImagesStr.split(",");
+	       for (int i = 0; i < subImages.length; i++) {
+	           subImages[i] = MallConstant.SERVER_ADDRES + subImages[i];
+	       }
+	       map.put("subImages", subImages);
+	    }
+	    
+	    staticPageService.productIndex(map, product.getId());
+	    return ServerResponse.createSuccess("静态化成功");
+	}
+
 
 }

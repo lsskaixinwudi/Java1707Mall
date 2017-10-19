@@ -107,6 +107,9 @@ function deleteAll(){
 			<td><a
 				href="${pageContext.request.contextPath}/product/update.action?id=${product.id}"><input
 					type="button" value="修改" class="btn btn-info"></a></td>
+			<td><a
+				href="${pageContext.request.contextPath}/product/show.action?id=${product.id}"><input
+					type="button" value="上架" class="btn btn-info"></a></td>
 		</tr>
 		</c:forEach>
 	</table>

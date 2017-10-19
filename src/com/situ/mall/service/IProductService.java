@@ -2,6 +2,7 @@ package com.situ.mall.service;
 
 import java.util.List;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
 import com.situ.mall.pojo.Student;
@@ -35,6 +36,9 @@ public interface IProductService {
 
 
 	List<Product> findCategoryListById(int id);
+
+
+	ServerResponse show(Integer id);
 
 
 

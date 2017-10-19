@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.situ.mall.common.ServerResponse;
 import com.situ.mall.pojo.Banji;
 import com.situ.mall.pojo.Category;
 import com.situ.mall.pojo.Product;
@@ -153,4 +154,10 @@ public class ProductController {
 		return "product_search";
 
 	}
+	@RequestMapping("/show")
+	@ResponseBody
+	public ServerResponse show(Integer id) {
+		return productService.show(id);
+	}
+	
 }
