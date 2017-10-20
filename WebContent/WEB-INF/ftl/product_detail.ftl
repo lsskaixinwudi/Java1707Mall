@@ -170,9 +170,9 @@
 							<li class="left_right_nav">
 								<img src="/Java1707Mall/resources/front/img/left.png" />
 							</li>
-							<#list subImages as image>
+							<#list subImages as imge>
 								<li class="small_shop">
-									<img src="${image}" />
+									<img src="${imge}" />
 								</li>
 							</#list>
 							<li class="left_right_nav">
