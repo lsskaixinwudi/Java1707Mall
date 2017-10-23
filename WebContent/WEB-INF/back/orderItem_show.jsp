@@ -32,19 +32,7 @@
 	<%@include file="../common/header.jsp"%>
 	<div class="container">
 	<div class="row">
-		        <div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${pageContext.request.contextPath}/orderBack/findPageBeanList.action" class="list-group-item active">订单管理</a>
-		             
-		                 
-		            </div>
-		        </div>
-		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li class="active">
-		                    <a href="${pageContext.request.contextPath}/orderBack/findPageBeanList.action">订单管理</a>
-		                </li>
-		            </ul>
+		        <div class="col-md-12">
 		             <% 
 						PageBean pageBean = (PageBean)request.getAttribute("pageBean");
 						List<Category> list = pageBean.getList();

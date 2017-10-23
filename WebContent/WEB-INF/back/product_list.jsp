@@ -16,10 +16,6 @@
 <script type="text/javascript"	charset="utf-8"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery/jquery-1.11.1.js"></script>
 <script src="${pageContext.request.contextPath}/resources/lib/bootstrap-3.3.7-dist/js/bootstrap.js"	type="text/javascript" charset="utf-8"></script>
-<link rel="shortcut icon" href="favicon.ico"> <link href="${pageContext.request.contextPath}/resources/back/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/back/css/font-awesome.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/back/css/animate.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/back/css/style.css" rel="stylesheet">
 <script type="text/javascript" >
 function goPage(pageIndex) {
 	$('#pageIndex').val(pageIndex);
@@ -50,26 +46,6 @@ function deleteAll(){
 	<%@include file="../common/head.jsp" %>
 		<div class="container">
 		    <div class="row">
-		        <div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${pageContext.request.contextPath}/product/findPageBeanList.action" class="list-group-item active">学生管理</a>
-		                <a href="${pageContext.request.contextPath}/product/getSearchPage.action" class="list-group-item">学生搜索</a>
-		                <a href="${pageContext.request.contextPath}/product/getAddPage.action" class="list-group-item">添加学生</a>
-		            </div>
-		        </div>
-		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li class="active">
-		                    <a href="${pageContext.request.contextPath}/product/findPageBeanList.action">学生列表</a>
-		                </li>
-		                <li>
-		                    <a href="${pageContext.request.contextPath}/product/getSearchPage.action">学生搜索</a>
-		                </li>
-		                <li>
-		                	<a href="${pageContext.request.contextPath}/product/getAddPage.action">添加学生</a>
-		                </li>
-		            </ul>
-		           
   <form id="mainForm" action="${pageContext.request.contextPath}/product?method=deleteAll" method="post">          
 	<table class="table table-hover table-bordered">
 		<input type="button" value="批量删除" class="btn btn-danger" onclick="deleteAll();">
@@ -86,7 +62,7 @@ function deleteAll(){
 			<td>商品状态</td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 			<td>创建时间</td>
 			<td>更新时间</td>
-			<td colspan="2">操作选择</td>
+			<td colspan="3">操作选择</td>
 		</tr>
 		
 		<c:forEach items="${pageBean.list}" var="product">

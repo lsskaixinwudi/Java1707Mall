@@ -63,22 +63,22 @@ public class ProductController {
 	
 	@RequestMapping("/searchByCondition")
  	private ModelAndView searchByCondition(String name,String status, String pageIndex,String pageSize){
- 		int pageIndexInt = 1;//Ä¬ÈÏÈ¡µÚÒ»Ò³µÄÊý¾Ý
+ 		int pageIndexInt = 1;//Ä¬ï¿½ï¿½È¡ï¿½ï¿½Ò»Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  		if (pageIndex != null && !pageIndex.equals("")) {
  			pageIndexInt = Integer.parseInt(pageIndex);
  		}
- 		int pageSizeInt = 5;//Ä¬ÈÏÃ¿Ò»Ò³ÊýÁ¿
+ 		int pageSizeInt = 5;//Ä¬ï¿½ï¿½Ã¿Ò»Ò³ï¿½ï¿½ï¿½ï¿½
  		if (pageSize != null && !pageSize.equals("")) {
  			pageSizeInt = Integer.parseInt(pageSize);
  		}
  		SearchCondition searchCondition = new SearchCondition(pageIndexInt, pageSizeInt, name,status);
  		System.out.println(searchCondition);
  		
- 		//2.µ÷ÓÃserviceÍê³ÉÒµÎñ´¦Àí
+ 		//2.ï¿½ï¿½ï¿½ï¿½serviceï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½
  		//IStudentService service = new StudentServiceImpl();
  		PageBean<Product> pageBean = productService.searchByCondition(searchCondition);
  		System.out.println(pageBean);
- 		//3.½«Êý¾Ý·Åµ½Óò¶ÔÏóÖÐrequest,Ìø×ªµ½jspÒ³ÃæÕ¹Ê¾Êý¾Ý
+ 		//3.ï¿½ï¿½ï¿½ï¿½ï¿½Ý·Åµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½request,ï¿½ï¿½×ªï¿½ï¿½jspÒ³ï¿½ï¿½Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½
  		ModelAndView modelAndView = new ModelAndView();
  		modelAndView.addObject("pageBean",pageBean);
  		modelAndView.addObject("searchCondition",searchCondition);
@@ -152,7 +152,6 @@ public class ProductController {
 			System.out.println(pro);
 		} 
 		return "product_search";
-
 	}
 	@RequestMapping("/show")
 	@ResponseBody

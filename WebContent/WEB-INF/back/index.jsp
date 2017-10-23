@@ -46,7 +46,7 @@
                         </div>
                     </li>
                     <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                        <span class="ng-scope"><a href="${pageContext.request.contextPath}/category/findPageBeanList.action">分类</a></span>
+                        <span class="ng-scope">分类</span>
                     </li>
                     <li>
                         <a class="J_menuItem" href="index_v1.html">
@@ -62,22 +62,22 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="graph_echarts.html">百度ECharts</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/product/findPageBeanList.action">商品统计</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="graph_flot.html">Flot</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/product/getAddPage.action">添加商品</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="graph_morris.html">Morris.js</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/category/findPageBeanList.action">分类统计</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="graph_rickshaw.html">Rickshaw</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/category/getAddPage.action">添加分类</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="graph_peity.html">Peity</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/orderBack/findPageBeanList.action">查看订单</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
+                                <a class="J_menuItem" href="${pageContext.request.contextPath}/orderBack/findOrderItem.action">订单详情</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="graph_metrics.html">图表组合</a>
@@ -353,9 +353,9 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
-                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                        <form role="search" class="navbar-form-custom" method="post" action="${pageContext.request.contextPath}/product/searchByCondition.action">
                             <div class="form-group">
-                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                                <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search" >
                             </div>
                         </form>
                     </div>
@@ -446,18 +446,18 @@
     </div>
 
     <!-- 全局js -->
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="js/plugins/layer/layer.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/plugins/layer/layer.min.js"></script>
 
     <!-- 自定义js -->
-    <script src="js/hAdmin.js?v=4.1.0"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/hAdmin.js?v=4.1.0"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/back/js/index.js"></script>
 
     <!-- 第三方插件 -->
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/back/js/plugins/pace/pace.min.js"></script>
 
 </body>
 

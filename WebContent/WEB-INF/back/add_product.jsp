@@ -73,22 +73,7 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${pageContext.request.contextPath}/product/findPageBeanList.action" class="list-group-item ">商品管理</a>
-		                <a href="${pageContext.request.contextPath}/product/getAddPage.action" class="list-group-item active">添加商品</a>
-		                 
-		            </div>
-		        </div>
-		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li >
-		                    <a href="${pageContext.request.contextPath}/product/findPageBeanList.action">商品列表</a>
-		                </li>
-		                <li class="active">
-		                	<a href="${pageContext.request.contextPath}/product/getAddPage.action">添加商品</a>
-		                </li>
-		            </ul>
+		       <div class="col-md-12">
 				</head>
 				    <div>
 		            <form id="form-add" class="form_border"  action="/Java1707Mall/product/addProductService.action" enctype="multipart/form-data" method="post">

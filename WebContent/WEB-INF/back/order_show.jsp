@@ -14,19 +14,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		        <div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${pageContext.request.contextPath}/orderBack/findPageBeanList.action" class="list-group-item active">详细信息</a>
-		             
-		                 
-		            </div>
-		        </div>
 		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li class="active">
-		                    <a href="${pageContext.request.contextPath}/orderBack/findPageBeanList.action">详细信息</a>
-		                </li>
-		            </ul>
 		   <form id="mainForm" action="" method="post">
 		    <table class="table align-center table table-striped table-bordered table-hover table-condensed " >
 		    <tr>

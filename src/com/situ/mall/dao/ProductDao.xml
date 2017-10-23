@@ -47,26 +47,26 @@
   		
   		
 		<select id="searchByCondition" parameterType="Product" resultMap="productInfoMap">
-    		SELECT s.id,s.name,s.age,s.gender,s.address,b.id AS banji_id,b.name AS banji_name
-			FROM product AS s left JOIN banji AS b 
-			ON s.banji_id=b.id
+    		select p.id,c.id AS category_id,c.name AS category_name, p.name, p.subtitle, p.main_image,p.detail, p.sub_images, p.price, p.stock, p.status, 
+	    	p.create_time, p.update_time
+	    	from product AS p INNER join category AS c
+	    	ON p.category_id=c.id
 		       <where>
 		           <if test="name!=null and !&quot;&quot;.equals(name.trim())">
 		               and name like '%${name}%'
 		           </if>
-		           <if test="age!=null">
-		               and age=#{age}
+		           <if test="price!=null">
+		               and price=#{price}
 		           </if>
-		           <if test="gender!=null  and !&quot;&quot;.equals(gender.trim())">
-		               and gender=#{gender}
+		           <if test="status!=null  and !&quot;&quot;.equals(gender.trim())">
+		               and status=#{status}
+		           </if>
+		           <if test="category_id!=null">
+		               and category_id=#{category_id}
 		           </if>
 		       </where>
 		</select>
 		
-		
-		<select id="findAllBanji" resultType="Banji">
-  			select * from banji
-  		</select>
 		
 		<delete id="deletById" parameterType="int">
 			delete from product where id=#{id}
