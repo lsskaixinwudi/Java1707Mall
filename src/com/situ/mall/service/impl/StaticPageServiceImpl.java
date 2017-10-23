@@ -54,7 +54,6 @@ public class StaticPageServiceImpl implements IStaticPageService, ServletContext
 		try {
 			//输出流
 	           out = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-	           //处理模板
 	           template.process(root, out);
 		} catch (IOException e1) {
 			e1.printStackTrace();
