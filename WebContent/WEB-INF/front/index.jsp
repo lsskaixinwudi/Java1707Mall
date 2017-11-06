@@ -79,7 +79,7 @@
 							<li><a href="${pageContext.request.contextPath}/login/logout.shtml" target="_blank">注销</a></li>
 						</c:if>
 						<li><a class="collect" href="">我的收藏</a></li>
-						<li><a class="indent" href="">我的订单</a></li>
+						<li><a class="indent" href="${pageContext.request.contextPath}/order/toOrederItems.shtml">我的订单</a></li>
 						<li><a class="phone" href="">手机靓淘</a></li>
 						<li><a href="">我的积分</a></li>
 						<li><a href="">我的评价</a></li>

@@ -35,10 +35,10 @@ public class UserController {
 			if (user.getusername().equals(resultUser.getusername() ) && user.getPassword().equals(resultUser.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", resultUser);
-				return ServerResponse.createSuccess("µÇÂ¼³É¹¦");
+				return ServerResponse.createSuccess("ç™»é™†æˆåŠŸ!");
 			}
-			return ServerResponse.createError("µÇÂ¼Ê§°Ü");
+			return ServerResponse.createError("ç™»é™†å¤±è´¥ï¼");
 		}
-		return ServerResponse.createError("µÇÂ¼Ê§°Ü");
+		return ServerResponse.createError("ç™»é™†å¤±è´¥ï¼");
 	}
 }

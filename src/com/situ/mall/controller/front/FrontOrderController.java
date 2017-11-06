@@ -74,10 +74,8 @@ public class FrontOrderController {
 		model.addAttribute("shipping",shipping);
 		
 		ObjectMapper objectMapper = new ObjectMapper();
-		//Ö»ÓÐ¶ÔÏóÀïÃæ²»ÊÇnullµÄ²Å×ª»»
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		BuyCartVO buyCartVO = null;
-		//1.Èç¹ûcookieÓÐÕâ¸ö¹ºÎï³µ¶ÔÏó£¬ÄÇ¾Í´ÓcookieÀïÃæÈ¡³öÕâ¸ö¹ºÎï³µ¶ÔÏó
 		Cookie[] cookies = request.getCookies();
 		if (null != cookies && cookies.length > 0) {
 			for (Cookie cookie : cookies) {
@@ -139,11 +137,9 @@ public class FrontOrderController {
 		BuyCartVO buyCartVO = null;
 		Cookie[] cookies = req.getCookies();
 		System.out.println(cookies);
-		//1.Èç¹ûcookieÓÐÕâ¸ö¹ºÎï³µ¶ÔÏó£¬ÄÇ¾Í´ÓcookieÀïÃæÈ¡³öÕâ¸ö¹ºÎï³µ¶ÔÏó
 		if (null != cookies && cookies.length > 0) {
 			for (Cookie cookie : cookies) {
 				if ("buy_cart_cookie".equals(cookie.getName())) {
-					//Ö®Ç°ÒÑ¾­ÓÐ¹ºÎï³µ
 					//"{\"items\":[{\"product\":{\"id\":45},\"amount\":1}],\"productId\":45}"
 					String value = cookie.getValue();
 					try {
@@ -160,21 +156,21 @@ public class FrontOrderController {
 				
 				OrderItem orderItem = new OrderItem();
 				Integer productId = item.getProduct().getId();
-				orderItem.setProductId(productId);//ÉÌÆ·id
+				orderItem.setProductId(productId);//ï¿½ï¿½Æ·id
 				Product productTemp = productService.selectById(productId);
 
 				System.out.println(currentUnitPrice);
 				String productName = productTemp.getName();
-				orderItem.setProductName(productName);//ÉÌÆ·ÐÕÃû
+				orderItem.setProductName(productName);//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 				
 				String productImage = productTemp.getmain_image();
-				orderItem.setProductImage(productImage);//ÉÌÆ·Ö÷Í¼
+				orderItem.setProductImage(productImage);//ï¿½ï¿½Æ·ï¿½ï¿½Í¼
 				System.out.println(currentUnitPrice);
 				orderItem.setCurrentUnitPrice((double)currentUnitPrice.intValue());
 				Integer totalPrice = currentUnitPrice.intValue() * item.getAmount();
-				orderItem.setTotalPrice(totalPrice);//ÉÌÆ·×Ü¼Û
+				orderItem.setTotalPrice(totalPrice);//ï¿½ï¿½Æ·ï¿½Ü¼ï¿½
 				System.out.println(currentUnitPrice);
-				orderItem.setQuantity(item.getAmount());//ÉÌÆ·ÊýÁ¿
+				orderItem.setQuantity(item.getAmount());//ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 				
 				orderItem.setUserId(user.getId());
 				
@@ -191,7 +187,7 @@ public class FrontOrderController {
 				System.out.println(order);
 				model.addAttribute("order",order);
 		
-				//Çå³ý¹ºÎï³µ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï³µ
 				
 				Cookie cookie = new Cookie("buy_cart_cookie",null);
 			       cookie.setPath("/");
@@ -208,7 +204,7 @@ public class FrontOrderController {
 		User user = (User) session.getAttribute("user");
 		Integer userId = user.getId();
 
-		// ½«¶©µ¥·µ»Ø¸øÇ°Ì¨Õ¹Ê¾
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ç°Ì¨Õ¹Ê¾
 		List<Order> orderItems = orderService.findOrder(userId);
 		model.addAttribute("orderItems", orderItems);
 		for (Order order : orderItems) {

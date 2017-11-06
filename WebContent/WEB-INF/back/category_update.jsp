@@ -11,11 +11,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
 <title></title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
+	href="${pageContext.request.contextPath}/resources/thirdlib/bootstrap/css/bootstrap.css" />
 <script type="text/javascript"	charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/thirdlib/jquery/jquery-1.11.1.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
-<script src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"	type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/resources/thirdlib/bootstrap/js/bootstrap.js"	type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	function uploadPic(){
 		//定义参数

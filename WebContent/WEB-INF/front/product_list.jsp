@@ -47,27 +47,19 @@
 				</div>
 				<div class="right">
 					<ul>
-						<li>
-							<a class="login" href="login.html" target="_blank">请登录</a>
-						</li>
-						<li>
-							<a href="register.html" target="_blank">快速注册</a>
-						</li>
-						<li>
-							<a class="collect" href="">我的收藏</a>
-						</li>
-						<li>
-							<a class="indent" href="">我的订单</a>
-						</li>
-						<li>
-							<a class="phone" href="">手机靓淘</a>
-						</li>
-						<li>
-							<a href="">我的积分</a>
-						</li>
-						<li>
-							<a href="">我的评价</a>
-						</li>
+						<c:if test="${empty user.username}">
+							<li><a  href="javascript:login()"   target="_blank">请登录</a></li>
+							<li><a href="register.html" target="_blank">快速注册</a></li>
+						</c:if>
+						<c:if test="${!empty user.username}">
+							<li><a  href="javascript:login1()"   target="_blank">${user.username}</a></li>
+							<li><a href="${pageContext.request.contextPath}/login/logout.shtml" target="_blank">注销</a></li>
+						</c:if>
+						<li><a class="collect" href="">我的收藏</a></li>
+						<li><a class="indent" href="${pageContext.request.contextPath}/order/toOrederItems.shtml">我的订单</a></li>
+						<li><a class="phone" href="">手机靓淘</a></li>
+						<li><a href="">我的积分</a></li>
+						<li><a href="">我的评价</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"></div>

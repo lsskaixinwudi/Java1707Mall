@@ -11,11 +11,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
 <title></title>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/css/bootstrap.css" />
+	href="${pageContext.request.contextPath}/resources/thirdlib/bootstrap/css/bootstrap.css" />
 <script type="text/javascript"	charset="utf-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/thirdlib/jquery/jquery-1.11.1.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script>
-<script src="${pageContext.request.contextPath}/lib/bootstrap-3.3.7-dist/js/bootstrap.js"	type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/resources/thirdlib/bootstrap/js/bootstrap.js"	type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	function uploadPic(){
 		//定义参数
@@ -70,22 +70,7 @@
 	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-		            <div class="list-group">
-		                <a href="${pageContext.request.contextPath}/product/findPageBeanList.action" class="list-group-item ">商品管理</a>
-		                <a href="${pageContext.request.contextPath}/product/getAddPage.action" class="list-group-item active">添加商品</a>
-		                 
-		            </div>
-		        </div>
-		        <div class="col-md-10">
-		            <ul class="nav nav-tabs">
-		                <li >
-		                    <a href="${pageContext.request.contextPath}/product/findPageBeanList.action">商品列表</a>
-		                </li>
-		                <li class="active">
-		                	<a href="${pageContext.request.contextPath}/product/getAddPage.action">添加商品</a>
-		                </li>
-		            </ul>
+			
 				</head>
 				    <div>
 		            <form id="form-update" class="form_border"  action="/Java1707Mall/product/updateProduct.action?id=${product.id}" enctype="multipart/form-data" method="post">
@@ -112,9 +97,7 @@
 	                    </div>
 	                    <div  class="form-group">
 						  	<label >产品主图</label>
-						  	<img alt="" id="imgId" src="" width="100" height="100">
-						  	<input type="hidden" id="main_image" name="main_image" value="${product.main_image}"/>
-						  	<input type="file" name="pictureFile" onchange="uploadPic();"/>
+						  	<img alt="" src="/pic/${product.main_image}" width="80" height="60" ">
 				         </div> 
 	                    <!-- <div class="form-group">
 	                        <label>图片地址</label>
